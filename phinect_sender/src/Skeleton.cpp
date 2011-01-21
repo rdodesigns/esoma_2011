@@ -1,15 +1,11 @@
-/******************************************************************************
- *                                                                            *
- * Phinect: Obtain userGenerator physiological raw data from Kinect.          *
- *   Skeleton: Setup User Tracker Skeleton functions                          *
- *                                                                            *
- * Under the GPLv3.                                                           *
- *                                                                            *
- * Uses OpenNI and NITE framework.                                            *
- *                                                                            *
- * MIT Media Lab: Personal Robots and New Media Medicine                      *
- *                                                                            *
- *****************************************************************************/
+/**
+ * @file
+ * @author Ryan Orendorff <ryan@rdodesigns.com>
+ * @version 3 (master)
+ *
+ * Skeleton functions
+ *
+ */
 
 //---------------------------------------------------------------------------
 // Includes

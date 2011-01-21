@@ -1,14 +1,11 @@
-/******************************************************************************
- *                                                                            *
- * Phinect: Obtain user physiological raw data from Kinect.                   *
- *                                                                            *
- * Under the GPLv3.                                                           *
- *                                                                            *
- * Uses OpenNI and NITE framework.                                            *
- *                                                                            *
- * MIT Media Lab: Personal Robots and New Media Medicine                      *
- *                                                                            *
- *****************************************************************************/
+/**
+ * @file
+ * @author Ryan Orendorff <ryan@rdodesigns.com>
+ * @version 3 (master)
+ *
+ * Main phinect_sender
+ *
+ */
 
 //---------------------------------------------------------------------------
 // Includes

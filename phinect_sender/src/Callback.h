@@ -1,15 +1,11 @@
-/******************************************************************************
- *                                                                            *
- * Phinect: Obtain userGenerator physiological raw data from Kinect.          *
- *   Callback: Setup User Tracker Callback functions                          *
- *                                                                            *
- * Under the GPLv3.                                                           *
- *                                                                            *
- * Uses OpenNI and NITE framework.                                            *
- *                                                                            *
- * MIT Media Lab: Personal Robots and New Media Medicine                      *
- *                                                                            *
- *****************************************************************************/
+/**
+ * @file
+ * @author Ryan Orendorff <ryan@rdodesigns.com>
+ * @version 3 (master)
+ *
+ * Callback functions
+ *
+ */
 
 #ifndef __PHINECT_CALLBACK__
 #define __PHINECT_CALLBACK__
