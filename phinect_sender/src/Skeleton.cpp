@@ -1,9 +1,9 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan.com>
- * @version 10 [master] (Fri Jan 21 14:38:20 EST 2011)
- * @message
- * @parent 2a035360c399831ba0b66d30c34e510b820026b5
+ * @version 11 [master] (Fri Jan 21 14:39:05 EST 2011)
+ * @message Git hook test
+ * @parent 1444cf6559fdda917e0cc3d14a40e68744d5b9f6
  *
  * Skeleton functions
  *
