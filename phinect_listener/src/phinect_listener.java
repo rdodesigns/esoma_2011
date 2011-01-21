@@ -1,3 +1,11 @@
+/**
+ * @author    Ryan Orendorff <ryan@rdodesigns.com>
+ * @version 3 (master)
+ *
+ * Phinect Listener
+ * A proce
+ */
+
 import processing.core.*;
 import processing.xml.*;
 import processing.opengl.*;
