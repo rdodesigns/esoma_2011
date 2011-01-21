@@ -28,6 +28,8 @@ public class phinect_listener extends PApplet {
   ArrayList lleg_graph = new ArrayList();
   ArrayList rleg_graph = new ArrayList();
   PVector[] positions = new PVector[24];
+  Skeleton skeleton = new Skeleton(this);
+
   static final int larm_color = 0xffE41A1C;
   static final int rarm_color = 0xff377EB8;
   static final int lleg_color = 0xff4DAF4A;
