@@ -1,7 +1,7 @@
 /**
  * @file
  * @author    Ryan Orendorff <ryan@rdodesigns.com>
- * @version 5 [master] (Fri Jan 21 02:35:11 EST 2011)
+ * @version 6 [master] (Fri Jan 21 02:42:50 EST 2011)
  *
  * Phinect Listener
  * A proce
@@ -39,10 +39,10 @@ public class phinect_listener extends PApplet {
   PVector[] positions = new PVector[24];
   Skeleton skeleton = new Skeleton(this);
 
-  static final int larm_color = 0xffE41A1C;
-  static final int rarm_color = 0xff377EB8;
-  static final int lleg_color = 0xff4DAF4A;
-  static final int rleg_color = 0xff984EA3;
+  static final int larm_color = 0xffE41A1C; // Red
+  static final int rarm_color = 0xff377EB8; // Blue
+  static final int lleg_color = 0xff4DAF4A; // Green
+  static final int rleg_color = 0xff984EA3; // Purple
 
   public void setup() {
 
