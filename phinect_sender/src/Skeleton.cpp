@@ -1,9 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan.com>
- * @version 12 [master] (Fri Jan 21 14:40:40 EST 2011)
- * @message Another githook test?
- * @parent a164e8961fc8a6fe0d6f4384a47ebc30dcad3991
+ * @version 14 [master] (Fri Jan 21 18:21:30 EST 2011)
+ * @parent 96b936cedc48a0de9663a6cbe02b49fa6b1b54ac
  *
  * Skeleton functions
  *

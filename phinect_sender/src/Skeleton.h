@@ -1,9 +1,8 @@
 /**
  * @file
- * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 5 [master] (Fri Jan 21 02:35:11 EST 2011)
- * @message
- * @parent
+ * @author Ryan Orendorff <ryan.com>
+ * @version 14 [master] (Fri Jan 21 18:21:30 EST 2011)
+ * @parent 96b936cedc48a0de9663a6cbe02b49fa6b1b54ac
  *
  * Skeleton functions
  *

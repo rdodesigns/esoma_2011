@@ -1,9 +1,8 @@
 /**
  * @file
- * @author    Ryan Orendorff <ryan@rdodesigns.com>
- * @version 6 [master] (Fri Jan 21 02:42:50 EST 2011)
- * @message
- * @parent
+ * @author Ryan Orendorff <ryan.com>
+ * @version 14 [master] (Fri Jan 21 18:21:30 EST 2011)
+ * @parent 96b936cedc48a0de9663a6cbe02b49fa6b1b54ac
  *
  * Phinect Listener
  * A proce
@@ -38,8 +37,8 @@ public class phinect_listener extends PApplet {
   ArrayList rarm_graph = new ArrayList();
   ArrayList lleg_graph = new ArrayList();
   ArrayList rleg_graph = new ArrayList();
-  PVector[] positions = new PVector[24];
-  Skeleton skeleton = new Skeleton(this);
+  PVector[] positions  = new PVector[24];
+  Skeleton skeleton    = new Skeleton(this);
 
   static final int larm_color = 0xffE41A1C; // Red
   static final int rarm_color = 0xff377EB8; // Blue
