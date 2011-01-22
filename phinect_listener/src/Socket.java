@@ -1,25 +1,30 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 20 [master] (Sat Jan 22 00:13:27 EST 2011)
- * @parent f9b2244c1712921defcac5c8f6c910f1e1f28cae
+ * @version 21 [master] (Sat Jan 22 02:49:12 EST 2011)
+ * @parent d2daf7d110ac3e419c415876621e52a01c4a76b0
  *
- * Skeleton class
+ * @section DESCRIPTION
+ *
+ * An interface to the ZeroMQ (0MQ) library that hides some of the background
+ * of listening to the Kinect.
+ *
+ * This is licensed under GPLv3.
+ *
+ * MIT Media Lab
+ * New Media Medicine Group
+ * E14, 20 Ames Street
+ * Cambridge, MA 02139 USA
  *
  */
 
-
-import processing.core.PApplet;
 import org.zeromq.ZMQ;
 
 public class Socket {
-  PApplet parent;
-
   ZMQ.Context context;
   ZMQ.Socket subscriber;
 
-  Socket(PApplet parent) {
-    this.parent = parent;
+  Socket() {
 
     context = ZMQ.context(1);
     subscriber = context.socket(ZMQ.SUB);

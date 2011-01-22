@@ -1,11 +1,25 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 20 [master] (Sat Jan 22 00:13:27 EST 2011)
- * @parent f9b2244c1712921defcac5c8f6c910f1e1f28cae
+ * @version 21 [master] (Sat Jan 22 02:49:12 EST 2011)
+ * @parent d2daf7d110ac3e419c415876621e52a01c4a76b0
  *
- * Phinect Listener
- * A proce
+ * @section DESCRIPTION
+ *
+ * A Processing based visualization for the data obtained from the MS Kinect.
+ * Interfaces with a C++ program (phinect_sender) to obtain skeletal points
+ * of a player, and then shows this player's body on screen along with some
+ * calculated physiological parameters. Performs gesture recognition to give
+ * a score of a patients progress in a particular excerise as a method of
+ * creating better patient compliance with physical therapy treatments
+ * between doctors visits.
+ *
+ * This is licensed under GPLv3.
+ *
+ * MIT Media Lab
+ * New Media Medicine Group
+ * E14, 20 Ames Street
+ * Cambridge, MA 02139 USA
  */
 
 import processing.core.*;
@@ -21,7 +35,7 @@ public class phinect_listener extends PApplet {
     size(640,480, OPENGL);
     frameRate(30);
 
-    info_grab  = new Socket(this);
+    info_grab  = new Socket();
     skeleton = new Skeleton(this, info_grab, 1);
   }
 

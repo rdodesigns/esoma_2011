@@ -1,10 +1,21 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 20 [master] (Sat Jan 22 00:13:27 EST 2011)
- * @parent f9b2244c1712921defcac5c8f6c910f1e1f28cae
+ * @version 21 [master] (Sat Jan 22 02:49:13 EST 2011)
+ * @parent d2daf7d110ac3e419c415876621e52a01c4a76b0
  *
- * Main phinect_sender
+ * @section DESCRIPTION
+ *
+ * Opens up either the Kinect device or plays back a recording. User tracking
+ * is performed on this recording, which is then to the TCP port 12345 using
+ * ZeroMQ (OMQ). This continues until the user presses a key.
+ *
+ * This is licensed under GPLv3.
+ *
+ * MIT Media Lab
+ * New Media Medicine Group
+ * E14, 20 Ames Street
+ * Cambridge, MA 02139 USA
  *
  */
 
@@ -23,14 +34,10 @@
 #include "Callback.h"
 #include "Skeleton.h"
 
-
-
-
 //---------------------------------------------------------------------------
 // Defines
 //---------------------------------------------------------------------------
 #define SAMPLE_XML_PATH "SamplesConfig.xml"
-
 
 //---------------------------------------------------------------------------
 // Macros
@@ -66,13 +73,13 @@ int main(int argc, const char *argv[])
   zmq::socket_t publisher (zmq_context, ZMQ_PUB);
   publisher.bind("tcp://*:12345");
 
-
   XnStatus nRetVal = XN_STATUS_OK;
 
   XnBool save = false;
 
   if (argc > 2)
   {
+    // Save to file, currently does not support rerecording (open and save).
     if ((strcmp(argv[1], "save") == 0)) save = true;
 
     EnumerationErrors errors;
@@ -129,12 +136,12 @@ int main(int argc, const char *argv[])
 		CHECK_RC(nRetVal, "Find user generator");
 	}
 
-
-
+  // Sets up the callback functions for user tracking. See Callback.cpp
   HandlerInit();
 
 	user.GetSkeletonCap().SetSkeletonProfile(XN_SKEL_PROFILE_ALL);
 
+  // Are we recording? If so, do so to argv[2]
   if (save) {
     xn::Recorder recorder;
     nRetVal = recorder.Create(context);
@@ -145,8 +152,8 @@ int main(int argc, const char *argv[])
 
   nRetVal = context.StartGeneratingAll();
 
+  // Marker for the Sending... notification.
   int marker = 0;
-
   while(!xnOSWasKeyboardHit()) {
     nRetVal = context.WaitAndUpdateAll();
     CHECK_RC(nRetVal, "WaitAndUpdateAll");
@@ -163,6 +170,7 @@ int main(int argc, const char *argv[])
       printf("\rSending...");
 
 
+    // Use j to number the joints (currently from 0 to 14)
     int j = 0;
     for (int i = 1; i <= 24 ; i++) {
       XnVector3D pos = GetBodyPartPosition(1, (XnSkeletonJoint) i);
@@ -174,7 +182,7 @@ int main(int argc, const char *argv[])
           || i == 14
           || i == 16
           || i == 19
-          || i == 23) continue;
+          || i == 23) continue; // These give odd results in z axis.
 
       zmq::message_t message(6*5);
       snprintf((char *) message.data(), 6*5,

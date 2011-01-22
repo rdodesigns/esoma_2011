@@ -1,24 +1,20 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 20 [master] (Sat Jan 22 00:13:27 EST 2011)
- * @parent f9b2244c1712921defcac5c8f6c910f1e1f28cae
+ * @version 21 [master] (Sat Jan 22 02:49:12 EST 2011)
+ * @parent d2daf7d110ac3e419c415876621e52a01c4a76b0
  *
  * @section DESCRIPTION
  *
+ * A class for describing the skeleton as a series of PVectors. Calculates
+ * and keeps track of data derived from the skeletal points.
  *
- * @section LICENSE
+ * This is licensed under GPLv3.
  *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details at
- * http://www.gnu.org/copyleft/gpl.html
+ * MIT Media Lab
+ * New Media Medicine Group
+ * E14, 20 Ames Street
+ * Cambridge, MA 02139 USA
  *
  */
 

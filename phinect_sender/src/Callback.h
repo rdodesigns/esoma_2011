@@ -1,11 +1,20 @@
 /**
  * @file
- * @author Ryan Orendorff <ryan.com>
- * @version 14 [master] (Fri Jan 21 18:21:30 EST 2011)
- * @parent 96b936cedc48a0de9663a6cbe02b49fa6b1b54ac
+ * @author Ryan Orendorff <ryan@rdodesigns.com>
+ * @version 21 [master] (Sat Jan 22 02:49:12 EST 2011)
+ * @parent d2daf7d110ac3e419c415876621e52a01c4a76b0
  *
- * Callback functions
+ * @section DESCRIPTION
  *
+ * Callback functions for determining what to do during certain user tracking
+ * events, such as finding a new user and calibrating that user's skeleton.
+ *
+ * This is licensed under GPLv3.
+ *
+ * MIT Media Lab
+ * New Media Medicine Group
+ * E14, 20 Ames Street
+ * Cambridge, MA 02139 USA
  */
 
 #ifndef __PHINECT_CALLBACK__
