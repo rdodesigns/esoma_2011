@@ -1,8 +1,9 @@
 /**
  * @file
- * @author Ryan Orendorff <ryan.com>
- * @version 14 [master] (Fri Jan 21 18:21:30 EST 2011)
- * @parent 96b936cedc48a0de9663a6cbe02b49fa6b1b54ac
+ * @author Ryan Orendorff <ryan@rdodesigns.com>
+ * @version 15 [  cleanup
+master] (Fri Jan 21 20:20:07 EST 2011)
+ * @parent eb7eb6da42f2dee113645525b3328ba7af3cd96d
  *
  * Main phinect_sender
  *
@@ -37,11 +38,11 @@
 //---------------------------------------------------------------------------
 
 // Taken from sample file. I really like this one.
-#define CHECK_RC(rc, what)											\
-	if (rc != XN_STATUS_OK)											\
-	{																\
-		printf("%s failed: %s\n", what, xnGetStatusString(rc));		\
-		return rc;													\
+#define CHECK_RC(rc, what)                                  \
+	if (rc != XN_STATUS_OK)                                   \
+	{                                                         \
+		printf("%s failed: %s\n", what, xnGetStatusString(rc)); \
+		return rc;                                              \
 	}
 
 //---------------------------------------------------------------------------
