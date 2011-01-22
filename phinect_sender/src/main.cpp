@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 16 [master] (Fri Jan 21 20:27:56 EST 2011)
- * @parent 91bb8fb79f269b0e0e19107d67380fe15b668bdc
+ * @version 20 [master] (Sat Jan 22 00:13:27 EST 2011)
+ * @parent f9b2244c1712921defcac5c8f6c910f1e1f28cae
  *
  * Main phinect_sender
  *
@@ -163,13 +163,22 @@ int main(int argc, const char *argv[])
       printf("\rSending...");
 
 
+    int j = 0;
     for (int i = 1; i <= 24 ; i++) {
       XnVector3D pos = GetBodyPartPosition(1, (XnSkeletonJoint) i);
+      if (   i == 4
+          || i == 5
+          || i == 8
+          || i == 10
+          || i == 11
+          || i == 14
+          || i == 16
+          || i == 19
+          || i == 23) continue;
 
-      zmq::message_t message(6*4);
-      snprintf((char *) message.data(), 6*4,
-        "%05.1f %05.1f %05.1f ", pos.X, pos.Y, pos.Z);
-      //printf("[%d] %05.1f, %05.1f, %05.1f\n", i, pos.X, pos.Y, pos.Z);
+      zmq::message_t message(6*5);
+      snprintf((char *) message.data(), 6*5,
+        "%d %d %05.1f %05.1f %05.1f ", 1, j++, pos.X, pos.Y, pos.Z);
       publisher.send(message, (i == 24) ? 0 : ZMQ_SNDMORE);
     }
 
