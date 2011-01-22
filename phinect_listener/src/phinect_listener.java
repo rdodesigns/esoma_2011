@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 21 [master] (Sat Jan 22 02:49:12 EST 2011)
- * @parent d2daf7d110ac3e419c415876621e52a01c4a76b0
+ * @version 22 [windows] (Sat Jan 22 04:32:05 EST 2011)
+ * @parent d04dacf0f74321248345a6293b7736a65a3a49e9
  *
  * @section DESCRIPTION
  *
@@ -26,10 +26,14 @@ import processing.core.*;
 import processing.xml.*;
 import processing.opengl.*;
 
+import peasy.*;
+
 public class phinect_listener extends PApplet {
 
   Skeleton skeleton;
   Socket  info_grab;
+
+  PeasyCam cam;
 
   public void setup() {
     size(640,480, OPENGL);
@@ -37,26 +41,28 @@ public class phinect_listener extends PApplet {
 
     info_grab  = new Socket();
     skeleton = new Skeleton(this, info_grab, 1);
+
+    frame.setResizable(true);
+
+    // Set Camera
+    cam = new PeasyCam(this, -424.8 ,86.8, 1504.1, 1500 );
+    cam.setMinimumDistance(0);
+    cam.setMaximumDistance(4000);
+    cam.rotateX(-2.9755113);
+    cam.rotateY(-0.026724178);
+    cam.rotateZ(-0.04521484);
   }
 
   public void draw() {
 
     background(0);
-    lights();
-    camera(0f, 0f, 0f, -272.6f, -111.8f, 2972.2f, 0f, -1f, 1f);
 
     skeleton.drawSkeleton();
 
-
-    // End 3D
-    camera();
-    javax.media.opengl.GL gl=((PGraphicsOpenGL)g).beginGL();
-    gl.glClear(javax.media.opengl.GL.GL_DEPTH_BUFFER_BIT);
-    gl.glDisable(javax.media.opengl.GL.GL_BLEND);
-    ((PGraphicsOpenGL)g).endGL();
-
     // Begin 2D
+    cam.beginHUD();
     skeleton.draw2DData();
+    cam.endHUD();
   }
 
   public static void main(String args[]) {

@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 21 [master] (Sat Jan 22 02:49:12 EST 2011)
- * @parent d2daf7d110ac3e419c415876621e52a01c4a76b0
+ * @version 22 [windows] (Sat Jan 22 04:32:05 EST 2011)
+ * @parent d04dacf0f74321248345a6293b7736a65a3a49e9
  *
  * @section DESCRIPTION
  *
@@ -81,7 +81,6 @@ public class Skeleton {
     t = sscanf.nextToken();
     int limb = Integer.valueOf(t);
 
-
     t = sscanf.nextToken();
     joints[limb].x = Float.valueOf(t);
 
@@ -90,6 +89,10 @@ public class Skeleton {
 
     t = sscanf.nextToken();
     joints[limb].z = Float.valueOf(t);
+
+    //if (limb == 2)
+      //System.out.println(joints[limb].x + " " + joints[limb].y + " "
+                                              //+ joints[limb].z);
   }
 
   public void drawSkeleton()
@@ -102,6 +105,9 @@ public class Skeleton {
     for (int i = 0; i < joints.length; i++){
       parent.pushMatrix();
       parent.translate(joints[i].x,joints[i].y,joints[i].z);
+
+      if (i == 1)
+        parent.ambientLight(255,255,255);
 
       if ( i >=3 && i <=5)
         parent.fill(larm_color);
@@ -116,7 +122,6 @@ public class Skeleton {
       parent.popMatrix();
     }
 
-
     larm_graph.remove(0);
     rarm_graph.remove(0);
     lleg_graph.remove(0);
@@ -126,8 +131,6 @@ public class Skeleton {
     rarm_graph.add(GetPercentDistension(6));
     lleg_graph.add(GetPercentDistension(9));
     rleg_graph.add(GetPercentDistension(12));
-
-
   }
 
   public void draw2DData()
