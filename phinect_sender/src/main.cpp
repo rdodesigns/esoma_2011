@@ -1,8 +1,8 @@
 /**
  * @file
- * @author Ryan Orendorff <ryan.com>
- * @version 14 [master] (Fri Jan 21 18:21:30 EST 2011)
- * @parent 96b936cedc48a0de9663a6cbe02b49fa6b1b54ac
+ * @author Ryan Orendorff <ryan@rdodesigns.com>
+ * @version 19 [cleanup] (Sat Jan 22 00:09:42 EST 2011)
+ * @parent eb7eb6da42f2dee113645525b3328ba7af3cd96d
  *
  * Main phinect_sender
  *
@@ -37,11 +37,11 @@
 //---------------------------------------------------------------------------
 
 // Taken from sample file. I really like this one.
-#define CHECK_RC(rc, what)											\
-	if (rc != XN_STATUS_OK)											\
-	{																\
-		printf("%s failed: %s\n", what, xnGetStatusString(rc));		\
-		return rc;													\
+#define CHECK_RC(rc, what)                                  \
+	if (rc != XN_STATUS_OK)                                   \
+	{                                                         \
+		printf("%s failed: %s\n", what, xnGetStatusString(rc)); \
+		return rc;                                              \
 	}
 
 //---------------------------------------------------------------------------
@@ -163,13 +163,22 @@ int main(int argc, const char *argv[])
       printf("\rSending...");
 
 
+    int j = 0;
     for (int i = 1; i <= 24 ; i++) {
       XnVector3D pos = GetBodyPartPosition(1, (XnSkeletonJoint) i);
+      if (   i == 4
+          || i == 5
+          || i == 8
+          || i == 10
+          || i == 11
+          || i == 14
+          || i == 16
+          || i == 19
+          || i == 23) continue;
 
-      zmq::message_t message(6*4);
-      snprintf((char *) message.data(), 6*4,
-        "%05.1f %05.1f %05.1f ", pos.X, pos.Y, pos.Z);
-      //printf("[%d] %05.1f, %05.1f, %05.1f\n", i, pos.X, pos.Y, pos.Z);
+      zmq::message_t message(6*5);
+      snprintf((char *) message.data(), 6*5,
+        "%d %d %05.1f %05.1f %05.1f ", 1, j++, pos.X, pos.Y, pos.Z);
       publisher.send(message, (i == 24) ? 0 : ZMQ_SNDMORE);
     }
 
