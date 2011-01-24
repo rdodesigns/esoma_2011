@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 23 [master] (Mon Jan 24 03:22:12 EST 2011)
- * @parent b559be5a59f2cf47bd605326db26eccafd4b608f
+ * @version 25 [master] (Mon Jan 24 03:41:07 EST 2011)
+ * @parent 5582713ba9831fd09935fcc6100388e086d1b221
  *
  * @section DESCRIPTION
  *
@@ -19,8 +19,6 @@
  */
 
 import processing.core.*;
-
-import java.util.*;
 
 import java.util.Observable;
 
