@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 25 [master] (Mon Jan 24 03:41:07 EST 2011)
- * @parent 5582713ba9831fd09935fcc6100388e086d1b221
+ * @version 26 [master] (Mon Jan 24 11:08:36 EST 2011)
+ * @parent f786ee0d314d9f7fefb3fadb274f97a7b54208a2
  *
  * @section DESCRIPTION
  *
@@ -21,6 +21,7 @@
 import processing.core.*;
 
 import java.util.Observable;
+import java.util.StringTokenizer;
 
 
 public class Skeleton extends Observable {

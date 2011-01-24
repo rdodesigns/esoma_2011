@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 24 [master] (Mon Jan 24 03:39:23 EST 2011)
- * @parent 8de86979965f9413b8fff1b2676764c0254b7b29
+ * @version 26 [master] (Mon Jan 24 11:08:36 EST 2011)
+ * @parent f786ee0d314d9f7fefb3fadb274f97a7b54208a2
  *
  * @section DESCRIPTION
  *
@@ -29,7 +29,7 @@ public class ElbowBendListener extends GestureListener
 
   }
 
-  public void update(Observable thing, Object o){
+  public void update(Observable skeleton, Object o){
     System.out.println("Bending Elbows!");
   }
 
