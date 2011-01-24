@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 23 [master] (Mon Jan 24 03:22:12 EST 2011)
- * @parent b559be5a59f2cf47bd605326db26eccafd4b608f
+ * @version 24 [master] (Mon Jan 24 03:39:23 EST 2011)
+ * @parent 8de86979965f9413b8fff1b2676764c0254b7b29
  *
  * @section DESCRIPTION
  *
@@ -16,13 +16,7 @@
  * Cambridge, MA 02139 USA
  *
  */
-
-
-import java.util.*;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.util.Observer;
 
 public abstract class GestureListener implements Observer
 {
