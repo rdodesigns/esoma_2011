@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 22 [windows] (Sat Jan 22 04:32:05 EST 2011)
- * @parent d04dacf0f74321248345a6293b7736a65a3a49e9
+ * @version 23 [master] (Mon Jan 24 03:22:12 EST 2011)
+ * @parent b559be5a59f2cf47bd605326db26eccafd4b608f
  *
  * @section DESCRIPTION
  *
@@ -41,6 +41,8 @@ public class phinect_listener extends PApplet {
 
     info_grab  = new Socket();
     skeleton = new Skeleton(this, info_grab, 1);
+    skeleton.AttachGestureListener(new ElbowBendListener());
+    //skeleton.AttachGestureListener(new ArmCirclesListener());
 
     frame.setResizable(true);
 
@@ -60,9 +62,8 @@ public class phinect_listener extends PApplet {
     skeleton.drawSkeleton();
 
     // Begin 2D
-    cam.beginHUD();
-    skeleton.draw2DData();
-    cam.endHUD();
+    //cam.beginHUD();
+    //cam.endHUD();
   }
 
   public static void main(String args[]) {
