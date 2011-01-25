@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 24 [master] (Mon Jan 24 03:39:23 EST 2011)
- * @parent 8de86979965f9413b8fff1b2676764c0254b7b29
+ * @version 27 [analysis] (Tue Jan 25 02:37:51 EST 2011)
+ * @parent 7e2b7f0eec705d6755a8679bda9052873660306e
  *
  * @section DESCRIPTION
  *
@@ -16,11 +16,34 @@
  * Cambridge, MA 02139 USA
  *
  */
+import processing.core.PVector;
+
 import java.util.Observer;
 
 public abstract class GestureListener implements Observer
 {
 
-  final int pts_t = 192;
+  static final int pts_t = 256;
+  static final int smpl  = 32;
+  int smpl_offset; // Define differently for each class
+
+  protected float getPercentExtension(int limb, PVector[] joints)
+  {
+    PVector origin = joints[limb];
+    PVector second = joints[limb+1];
+    PVector third  = joints[limb+2];
+
+    float hyp_dist  =  PVector.dist(origin, third);
+    float side_dist = PVector.dist(origin, second)
+                    + PVector.dist(second, third);
+
+    return hyp_dist/side_dist;
+
+  }
+
+  protected void setSampleOffset(int offset){
+    smpl_offset = offset;
+  }
+
 
 }

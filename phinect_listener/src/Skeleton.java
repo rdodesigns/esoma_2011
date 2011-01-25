@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 26 [master] (Mon Jan 24 11:08:36 EST 2011)
- * @parent f786ee0d314d9f7fefb3fadb274f97a7b54208a2
+ * @version 27 [analysis] (Tue Jan 25 02:37:51 EST 2011)
+ * @parent 7e2b7f0eec705d6755a8679bda9052873660306e
  *
  * @section DESCRIPTION
  *
@@ -36,6 +36,8 @@ public class Skeleton extends Observable {
   private Socket socket;
   private int user;
 
+  int smpl_offset;
+
   Skeleton(PApplet parent, Socket socket, int user)
   {
     this.parent = parent;
@@ -43,6 +45,8 @@ public class Skeleton extends Observable {
     this.socket = socket;
 
     socket.subscribeToUser(this.user);
+
+    smpl_offset = 0;
 
     joints  = new PVector[15];
 
@@ -110,8 +114,15 @@ public class Skeleton extends Observable {
     }
   }
 
+  public PVector[] getSkeleton()
+  {
+    return joints;
+  }
+
   public <E extends GestureListener> void AttachGestureListener(E gesture)
   {
+    smpl_offset = (smpl_offset + GestureListener.smpl/4 + GestureListener.smpl/8) % GestureListener.pts_t; // Gives 30 equally spaced calculation
+    gesture.setSampleOffset(smpl_offset); // opportunities.
     this.addObserver((GestureListener) gesture);
   }
 
