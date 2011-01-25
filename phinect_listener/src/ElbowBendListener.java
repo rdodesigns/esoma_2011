@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 27 [analysis] (Tue Jan 25 02:37:51 EST 2011)
- * @parent 7e2b7f0eec705d6755a8679bda9052873660306e
+ * @version 29 [analysis] (Tue Jan 25 04:13:30 EST 2011)
+ * @parent 68581a5bdd351abcee32595aa5d54b97bb43ac06
  *
  * @section DESCRIPTION
  *
@@ -32,20 +32,28 @@ public class ElbowBendListener extends GestureListener
 
   ArrayList<Float> larm_dist;
   ArrayList<Float> larm_dist_smooth;
+  ArrayList<Float> larm_dist_der;
   ArrayList<Float> rarm_dist;
 
-  ElbowBendListener()
+  PeasyCam cam;
+  PApplet parent;
+
+  ElbowBendListener(PApplet parent, PeasyCam cam)
   {
+    this.parent = parent;
+    this.cam = cam;
     System.out.println("Elbow Gesture Listener Instantiated");
 
     larm_dist = new ArrayList<Float>(pts_t);
     larm_dist_smooth = new ArrayList<Float>(pts_t);
+    larm_dist_der = new ArrayList<Float>(pts_t);
     rarm_dist = new ArrayList<Float>(pts_t);
 
     for (int i = 0; i < pts_t; i++){
       larm_dist.add(0.0f);
       rarm_dist.add(0.0f);
       larm_dist_smooth.add(0.0f);
+      larm_dist_der.add(0.0f);
     }
 
   }
@@ -57,13 +65,15 @@ public class ElbowBendListener extends GestureListener
     rarm_dist.add(this.getPercentExtension(6, ((Skeleton) skeleton).getSkeleton()));
 
     smpl_offset = (smpl_offset + 1) % smpl;
-    if (smpl_offset == 0)
+    if (smpl_offset == 0){
       smoothingFilter();
+      derivativeFilter();
+    }
 
 
-    //cam.beginHUD();
-    //draw();
-    //cam.endHUD();
+    cam.beginHUD();
+    draw();
+    cam.endHUD();
   }
 
   /**
@@ -95,9 +105,70 @@ public class ElbowBendListener extends GestureListener
 
   }
 
+  protected void derivativeFilter()
+  {
+    float sum;
+    //int[] consts = {-21,14,39,54,59,54,39,14,-21};  // 9-point SG filter coefficients
+    int[] consts = {-4, -3, -2, -1, 0, 1, 2, 3, 4};  // 9-point SG filter coefficients
+    int znorm = 60;
+    //int znorm = 231;
+    int L=9;
+    int iloop = (L-1)/2;
+
+    for (int i=pts_t-smpl-iloop; i < (pts_t-iloop); i++)
+    {
+      sum=0;
+      for (int j=0 ; j<L ; j++) // loop c(0) to c(8) = 9 points
+        sum = sum + (consts[j] * larm_dist.get(i-iloop+j));
+
+      larm_dist_der.remove(0);
+      larm_dist_der.add(sum / znorm);
+    }
+
+  }
+
+
   protected void draw()
   {
+    parent.pushStyle();
 
+    parent.pushMatrix();
+
+      parent.translate(10, parent.height/4 + 20);
+
+      parent.strokeWeight(2);
+      parent.stroke(0xffE41A1C);
+
+
+      for (int j = 0; j < larm_dist_smooth.size() - 1; j++){
+        float pt1 = (Float) larm_dist_smooth.get(j);
+        float pt2 = (Float) larm_dist_smooth.get(j+1);
+        parent.line(j, -(parent.height/4)*pt1, j + 1, -(parent.height/4)*pt2);
+      }
+
+
+    parent.popMatrix();
+
+    parent.pushMatrix();
+
+      parent.translate(10, parent.height/4 + 20);
+
+      parent.strokeWeight(1);
+      parent.stroke(255,255,255, 192);
+      parent.line(0,0,larm_dist_der.size(), 0);
+      parent.strokeWeight(2);
+      parent.stroke(0xff377EB8);
+
+
+      for (int j = 0; j < larm_dist_der.size() - 1; j++){
+        float pt1 = (Float) larm_dist_der.get(j);
+        float pt2 = (Float) larm_dist_der.get(j+1);
+        parent.line(j, -(parent.height/4)*pt1, j + 1, -(parent.height/4)*pt2);
+      }
+
+
+    parent.popMatrix();
+    parent.popStyle();
   }
 
 } // end class

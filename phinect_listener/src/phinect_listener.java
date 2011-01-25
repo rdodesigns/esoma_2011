@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 23 [master] (Mon Jan 24 03:22:12 EST 2011)
- * @parent b559be5a59f2cf47bd605326db26eccafd4b608f
+ * @version 29 [analysis] (Tue Jan 25 04:13:30 EST 2011)
+ * @parent 68581a5bdd351abcee32595aa5d54b97bb43ac06
  *
  * @section DESCRIPTION
  *
@@ -38,12 +38,6 @@ public class phinect_listener extends PApplet {
   public void setup() {
     size(640,480, OPENGL);
     frameRate(30);
-
-    info_grab  = new Socket();
-    skeleton = new Skeleton(this, info_grab, 1);
-    skeleton.AttachGestureListener(new ElbowBendListener());
-    //skeleton.AttachGestureListener(new ArmCirclesListener());
-
     frame.setResizable(true);
 
     // Set Camera
@@ -53,6 +47,13 @@ public class phinect_listener extends PApplet {
     cam.rotateX(-2.9755113);
     cam.rotateY(-0.026724178);
     cam.rotateZ(-0.04521484);
+
+    // Skeleton Tracking
+    info_grab  = new Socket();
+    skeleton = new Skeleton(this, info_grab, 1);
+
+    skeleton.AttachGestureListener(new ElbowBendListener(this, cam));
+    //skeleton.AttachGestureListener(new ArmCirclesListener());
   }
 
   public void draw() {
