@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 27 [analysis] (Tue Jan 25 02:37:51 EST 2011)
- * @parent 7e2b7f0eec705d6755a8679bda9052873660306e
+ * @version 30 [analysis] (Wed Jan 26 03:09:00 EST 2011)
+ * @parent bc56c6681eca8fc3bd91849fdd94c26d54688c7f
  *
  * @section DESCRIPTION
  *
@@ -32,11 +32,14 @@ public class Skeleton extends Observable {
 
   private PApplet parent;
   private PVector[] joints;
+  private PVector[] joints_p;
 
   private Socket socket;
   private int user;
 
   int smpl_offset;
+
+  int wait;
 
   Skeleton(PApplet parent, Socket socket, int user)
   {
@@ -47,17 +50,29 @@ public class Skeleton extends Observable {
     socket.subscribeToUser(this.user);
 
     smpl_offset = 0;
+    wait = 0;
 
-    joints  = new PVector[15];
+    joints   = new PVector[15];
+    joints_p = new PVector[15];
 
     for (int i = 0; i < 15; i++){
       joints[i] = new PVector(0,0,0);
+      joints_p[i] = new PVector(0,0,0);
     }
 
   }
 
   public void updateSkeleton()
   {
+    wait = wait + 1 % 10;
+    if (wait == 0){
+      for (int i = 0; i < 15; i++){
+        joints_p[i].x = joints[i].x;
+        joints_p[i].y = joints[i].y;
+        joints_p[i].z = joints[i].z;
+      }
+    }
+
     do {
       this.processUpdateMessage(socket.getMessage());
     } while (socket.moreToMessage());
@@ -90,6 +105,7 @@ public class Skeleton extends Observable {
   {
     this.updateSkeleton();
 
+    parent.pushStyle();
     parent.fill(255,255,255);
 
     //for (PVector vec: joints) {
@@ -112,11 +128,29 @@ public class Skeleton extends Observable {
       parent.box(50);
       parent.popMatrix();
     }
+    parent.popStyle();
+
+
   }
 
   public PVector[] getSkeleton()
   {
     return joints;
+  }
+
+  protected PVector getNormalToSkeleton(){
+    PVector vec_23 = PVector.sub(joints[3], joints[2]);
+    PVector vec_26 = PVector.sub(joints[6], joints[2]);
+
+    PVector normal = vec_26.cross(vec_23);
+    normal.normalize();
+    return normal;
+  }
+
+  public PVector getNormalOffset(){
+    PVector arm_direction = PVector.sub(joints[5], joints_p[5]);
+    arm_direction.normalize();
+    return PVector.sub(getNormalToSkeleton(), arm_direction);
   }
 
   public <E extends GestureListener> void AttachGestureListener(E gesture)

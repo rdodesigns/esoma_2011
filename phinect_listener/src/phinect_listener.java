@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 29 [analysis] (Tue Jan 25 04:13:30 EST 2011)
- * @parent 68581a5bdd351abcee32595aa5d54b97bb43ac06
+ * @version 30 [analysis] (Wed Jan 26 03:09:00 EST 2011)
+ * @parent bc56c6681eca8fc3bd91849fdd94c26d54688c7f
  *
  * @section DESCRIPTION
  *
@@ -53,7 +53,6 @@ public class phinect_listener extends PApplet {
     skeleton = new Skeleton(this, info_grab, 1);
 
     skeleton.AttachGestureListener(new ElbowBendListener(this, cam));
-    //skeleton.AttachGestureListener(new ArmCirclesListener());
   }
 
   public void draw() {
@@ -62,9 +61,24 @@ public class phinect_listener extends PApplet {
 
     skeleton.drawSkeleton();
 
-    // Begin 2D
-    //cam.beginHUD();
-    //cam.endHUD();
+    PVector offset = skeleton.getNormalOffset();
+    //PVector offset = new PVector(3,4);
+    // 2D
+    cam.beginHUD();
+    pushMatrix();
+    pushStyle();
+    stroke(255,255,255);
+    noFill();
+    translate(width/4, super.height/2  );
+    offset.mult(30);
+    offset.limit(30);
+    strokeWeight(2);
+    line(0,0,offset.x, offset.y);
+    strokeWeight(1);
+    ellipse(0,0, 100, 100);
+    popStyle();
+    popMatrix();
+    cam.endHUD();
   }
 
   public static void main(String args[]) {
