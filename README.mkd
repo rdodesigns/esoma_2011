@@ -19,6 +19,7 @@ After all of these are downloaded and installed, run the following command from 
 ### OpenNI
 
 This section is taken from the unstable branch of the OpenNI github repo.
+
 1. Clone the git repository into a directory using `git clone git://github.com/OpenNI/OpenNI.git openni`
 2. `cd openni/Platform/Linux-x86/CreateRedist`
 3. Run the script RedistMaker using `python ./RedistMaker`
@@ -26,10 +27,10 @@ This section is taken from the unstable branch of the OpenNI github repo.
 5. Run `sudo ./install.sh`
 
 The install script copies key files to the following location:
-		       Libs into: /usr/lib
-		       Bins into: /usr/bin
-		       Includes into: /usr/include/ni
-		       Config files into: /var/lib/ni
+ - Libs into: /usr/lib
+ - Bins into: /usr/bin
+ - Includes into: /usr/include/ni
+ - Config files into: /var/lib/ni
 
 To build the package manually, you can run "make" in the "Platform\Linux-x86\Build" directory.
 
@@ -44,6 +45,7 @@ To build the package manually, you can run "make" in the "Platform\Linux-x86\Bui
 ### SensorKinect (the kinect driver)
 
 This section is taken from the unstable branch of the SensorKinect github repo.
+
 1. Download SensorKinect using `git clone git://github.com/avin2/SensorKinect.git sensor_kinect`
 2. `cd sensor_kinect/Platform/Linux-x86/CreateRedist`
 3. `python ./RedistMaker`
