@@ -5,10 +5,11 @@ Mac
 ---
 
 The following files should be downloaded and installed.
-  - [XCode 3.2.5](https://developer.apple.com/ios/download.action?path=/ios/ios_sdk_4.2__final/xcode_3.2.5_and_ios_sdk_4.2_final.dmg)
-  - [Macports](http://www.macports.org/install.php)
-  - [Processing](http://www.processing.org)
-  - [ZeroMQ](http://www.zeromq.org/intro:get-the-software) (this will need to be compiled by hand, a guide is located [here](http://blog.pmorelli.com/getting-zeromq-and-jzmq-running-on-mac-os-x))
+
+- [XCode 3.2.5](https://developer.apple.com/ios/download.action?path=/ios/ios_sdk_4.2__final/xcode_3.2.5_and_ios_sdk_4.2_final.dmg)
+- [Macports](http://www.macports.org/install.php)
+- [Processing](http://www.processing.org)
+- [ZeroMQ](http://www.zeromq.org/intro:get-the-software) (this will need to be compiled by hand, a guide is located [here](http://blog.pmorelli.com/getting-zeromq-and-jzmq-running-on-mac-os-x))
 
 After all of these are downloaded and installed, run the following command from a command line (if you do not know what the command line is, you can get to it by opening the application Applications->Utilities->Terminal to get to a command line).
 
@@ -18,11 +19,11 @@ After all of these are downloaded and installed, run the following command from 
 ### OpenNI
 
 This section is taken from the unstable branch of the OpenNI github repo.
-  1. Clone the git repository into a directory using `git clone git://github.com/OpenNI/OpenNI.git openni`
-  2. `cd openni/Platform/Linux-x86/CreateRedist`
-  3. Run the script RedistMaker using `python ./RedistMaker`
-  4. `cd ../Redist`
-  5. Run `sudo ./install.sh`
+1. Clone the git repository into a directory using `git clone git://github.com/OpenNI/OpenNI.git openni`
+2. `cd openni/Platform/Linux-x86/CreateRedist`
+3. Run the script RedistMaker using `python ./RedistMaker`
+4. `cd ../Redist`
+5. Run `sudo ./install.sh`
 
 The install script copies key files to the following location:
 		       Libs into: /usr/lib
@@ -35,19 +36,19 @@ To build the package manually, you can run "make" in the "Platform\Linux-x86\Bui
 
 ### NITE (Skeleton Tracking)
 
-  1. Download [NITE](http://www.openni.org/downloadfiles/openni-compliant-middleware-binaries/33-latest-unstable)
-  2. Use license key `0KOIk2JeIBYClPWVnMoRKn5cdY4=`
-  3. Move to the NITE directory (`cd Nite-*`)
-  4. `sudo ./install.sh`
+1. Download [NITE](http://www.openni.org/downloadfiles/openni-compliant-middleware-binaries/33-latest-unstable)
+2. Use license key `0KOIk2JeIBYClPWVnMoRKn5cdY4=`
+3. Move to the NITE directory (`cd Nite-*`)
+4. `sudo ./install.sh`
 
 ### SensorKinect (the kinect driver)
 
 This section is taken from the unstable branch of the SensorKinect github repo.
-  1. Download SensorKinect using `git clone git://github.com/avin2/SensorKinect.git sensor_kinect`
-  2. `cd sensor_kinect/Platform/Linux-x86/CreateRedist`
-  3. `python ./RedistMaker`
-  4. `cd ../Redist`
-  5. `sudo ./install.sh`
+1. Download SensorKinect using `git clone git://github.com/avin2/SensorKinect.git sensor_kinect`
+2. `cd sensor_kinect/Platform/Linux-x86/CreateRedist`
+3. `python ./RedistMaker`
+4. `cd ../Redist`
+5. `sudo ./install.sh`
 
 The install script copies key files to the following location:
 		       Libs into: /usr/lib
