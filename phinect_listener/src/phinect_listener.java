@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 30 [analysis] (Wed Jan 26 03:09:00 EST 2011)
- * @parent bc56c6681eca8fc3bd91849fdd94c26d54688c7f
+ * @version 31 [analysis] (Fri Feb  4 22:22:29 EST 2011)
+ * @parent 0ee25ddad17d29497f8062587f6bfc5ec26d1b87
  *
  * @section DESCRIPTION
  *
@@ -36,7 +36,7 @@ public class phinect_listener extends PApplet {
   PeasyCam cam;
 
   public void setup() {
-    size(640,480, OPENGL);
+    size(1024,768, OPENGL);
     frameRate(30);
     frame.setResizable(true);
 
@@ -60,25 +60,6 @@ public class phinect_listener extends PApplet {
     background(0);
 
     skeleton.drawSkeleton();
-
-    PVector offset = skeleton.getNormalOffset();
-    //PVector offset = new PVector(3,4);
-    // 2D
-    cam.beginHUD();
-    pushMatrix();
-    pushStyle();
-    stroke(255,255,255);
-    noFill();
-    translate(width/4, super.height/2  );
-    offset.mult(30);
-    offset.limit(30);
-    strokeWeight(2);
-    line(0,0,offset.x, offset.y);
-    strokeWeight(1);
-    ellipse(0,0, 100, 100);
-    popStyle();
-    popMatrix();
-    cam.endHUD();
   }
 
   public static void main(String args[]) {

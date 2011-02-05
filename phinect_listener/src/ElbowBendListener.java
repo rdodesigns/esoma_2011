@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 30 [analysis] (Wed Jan 26 03:09:00 EST 2011)
- * @parent bc56c6681eca8fc3bd91849fdd94c26d54688c7f
+ * @version 31 [analysis] (Fri Feb  4 22:22:29 EST 2011)
+ * @parent 0ee25ddad17d29497f8062587f6bfc5ec26d1b87
  *
  * @section DESCRIPTION
  *
@@ -236,7 +236,6 @@ public class ElbowBendListener extends GestureListener
     return (speed/i)/30;
   }
 
-
   protected void draw()
   {
     parent.pushStyle();
@@ -244,7 +243,7 @@ public class ElbowBendListener extends GestureListener
     parent.pushStyle();
     parent.pushMatrix();
       parent.fill(255,255,255);
-      parent.text(Float.toString(calculateSpeed()), 260, 10);
+      parent.text(Float.toString(calculateSpeed()) + " sec/rep", 190, 10);
     parent.popMatrix();
     parent.popStyle();
 
@@ -274,7 +273,7 @@ public class ElbowBendListener extends GestureListener
 
       parent.translate(10, parent.height/4 + 20);
 
-      parent.text(Float.toString(calculateLengthTime()), 260, 0);
+      parent.text(Float.toString(calculateLengthTime()) + " sec (length of bend)", 120, 30);
       parent.strokeWeight(1);
       parent.stroke(255,255,255, 192);
       parent.line(0,0,larm_dist_der.size(), 0);

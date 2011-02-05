@@ -1,2 +1,14 @@
 Install Instructions
 ====================
+
+Mac
+---
+
+The following files should be downloaded and installed.
+  - [XCode 3.2.5](https://developer.apple.com/ios/download.action?path=/ios/ios_sdk_4.2__final/xcode_3.2.5_and_ios_sdk_4.2_final.dmg)
+  - [Macports](http://www.macports.org/install.php)
+  - [Processing](http://www.processing.org)
+
+### OpenNI
+1. The following needs to be downloaded and installed.
+  - sudo port install libtool libusb-devel +universal doxygen graphviz ant
