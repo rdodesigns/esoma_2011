@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="phinect_listener" basedir="." default="compile">
+<project name="esomal" basedir="." default="compile">
 
   <property name="src.dir"     value="src" />
   <property name="build.dir"   value="build"/>
@@ -12,7 +12,7 @@
       <fileset dir="${lib.dir}" includes="**/*.jar"/>
   </path>
 
-  <property name="main-class"  value="phinect_listener"/>
+  <property name="main-class"  value="esomal"/>
 
   <target name="clean" description="remove intermediate files">
     <delete dir="${build.dir}"/>

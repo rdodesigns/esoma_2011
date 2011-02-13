@@ -9,7 +9,7 @@ INC_DIRS = /usr/include/ni
 
 SRC_FILES = src/*.cpp
 
-EXE_NAME = phinect
+EXE_NAME = esomas
 
 USED_LIBS += OpenNI
 USED_LIBS += zmq
