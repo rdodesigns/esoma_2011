@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 44 [master] (Sun Feb 13 04:17:21 EST 2011)
- * @parent 426daa04f78e6e09361d6fccffd6e0c548cf4f24
+ * @version 49 [master] (Sun Feb 13 05:14:00 EST 2011)
+ * @parent 5e501a314f00593732ed025f0765f69b94710178
  *
  * @section DESCRIPTION
  *
@@ -89,7 +89,7 @@ public class ElbowBendListener extends GestureListener
       Filters.peakDetection(larm_dist_der, 0.1f, peaks_der_max, peaks_der_min);
     }
 
-    if (draw_stack == null) System.out.println("No draw_stack!");
+    // Add left arm extension to the drawing stack.
     draw_stack.add(new DrawGraph(larm_dist_smooth, 10, 400, 0xffE41A1C));
 
   }
