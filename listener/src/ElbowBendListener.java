@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 42 [cleanup] (Sun Feb 13 00:23:04 EST 2011)
- * @parent d0c6fbc0092683979cf734d67ad2e0c07cda2048
+ * @version 43 [draw] (Sun Feb 13 04:13:00 EST 2011)
+ * @parent 9ba9cbadd4ae5d01d993271a392a13aeeab09f1c
  *
  * @section DESCRIPTION
  *
@@ -14,7 +14,7 @@
  *
  * MIT Media Lab
  * New Media Medicine Group
- * E14, 20 Ames Street
+ * E14, 75 Amherst Street, Cambridge MA
  * Cambridge, MA 02139 USA
  *
  */
@@ -28,15 +28,15 @@ import java.lang.Math;
 public class ElbowBendListener extends GestureListener
 {
 
-  ArrayList<Float> larm_dist;
-  ArrayList<Float> larm_dist_smooth;
-  ArrayList<Float> larm_dist_der;
-  ArrayList<Float> larm_dist_conv;
-  ArrayList<Float> rarm_dist;
+  private ArrayList<Float> larm_dist;
+  private ArrayList<Float> larm_dist_smooth;
+  private ArrayList<Float> larm_dist_der;
+  private ArrayList<Float> larm_dist_conv;
+  private ArrayList<Float> rarm_dist;
 
-  ArrayList<Integer> peaks;
-  ArrayList<Integer> peaks_der_max;
-  ArrayList<Integer> peaks_der_min;
+  private ArrayList<Integer> peaks;
+  private ArrayList<Integer> peaks_der_max;
+  private ArrayList<Integer> peaks_der_min;
 
   ElbowBendListener()
   {
@@ -88,6 +88,9 @@ public class ElbowBendListener extends GestureListener
       Filters.peakDetection(larm_dist_smooth, 0.1f, peaks, null);
       Filters.peakDetection(larm_dist_der, 0.1f, peaks_der_max, peaks_der_min);
     }
+
+    if (draw_stack == null) System.out.println("No draw_stack!");
+    draw_stack.add(new DrawGraph(larm_dist_smooth, 10, 400, 0xffE41A1C));
 
   }
 

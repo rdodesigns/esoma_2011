@@ -25,7 +25,9 @@
   <target name="compile" description="compile the Java source code to class files">
     <mkdir dir="${classes.dir}"/>
     <javac srcdir="src" destdir="build/classes" classpathref="classpath"
-      includeantruntime="false" />
+      includeantruntime="false">
+      <compilerarg value="-Xlint"/>
+    </javac>
   </target>
 
 

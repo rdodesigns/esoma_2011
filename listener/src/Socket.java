@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 38 [analysis] (Sat Feb 12 20:44:05 EST 2011)
- * @parent d212d6477193323b0efe69c45e874c10fe85d10d
+ * @version 43 [draw] (Sun Feb 13 04:13:01 EST 2011)
+ * @parent 9ba9cbadd4ae5d01d993271a392a13aeeab09f1c
  *
  * @section DESCRIPTION
  *
@@ -13,7 +13,7 @@
  *
  * MIT Media Lab
  * New Media Medicine Group
- * E14, 20 Ames Street
+ * E14, 75 Amherst Street, Cambridge MA
  * Cambridge, MA 02139 USA
  *
  */

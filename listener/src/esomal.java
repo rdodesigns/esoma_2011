@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 42 [cleanup] (Sun Feb 13 00:23:04 EST 2011)
- * @parent d0c6fbc0092683979cf734d67ad2e0c07cda2048
+ * @version 43 [draw] (Sun Feb 13 04:13:01 EST 2011)
+ * @parent 9ba9cbadd4ae5d01d993271a392a13aeeab09f1c
  *
  * @section DESCRIPTION
  *
@@ -18,7 +18,7 @@
  *
  * MIT Media Lab
  * New Media Medicine Group
- * E14, 20 Ames Street
+ * E14, 75 Amherst Street, Cambridge MA
  * Cambridge, MA 02139 USA
  */
 
@@ -31,7 +31,8 @@ import peasy.*;
 public class esomal extends PApplet {
 
   Skeleton skeleton;
-  Socket  info_grab;
+  DrawStack draw_stack;
+  Socket  socket;
 
   PeasyCam cam;
 
@@ -42,6 +43,7 @@ public class esomal extends PApplet {
 
     // Set Camera
     cam = new PeasyCam(this, -424.8 ,86.8, 1504.1, 1500 );
+    draw_stack = new DrawStack(this, cam);
     cam.setMinimumDistance(0);
     cam.setMaximumDistance(4000);
     cam.rotateX(-2.9755113);
@@ -49,8 +51,8 @@ public class esomal extends PApplet {
     cam.rotateZ(-0.04521484);
 
     // Skeleton Tracking
-    info_grab  = new Socket();
-    skeleton = new Skeleton(this, info_grab, 1);
+    socket  = new Socket();
+    skeleton = new Skeleton(socket, draw_stack, 1);
 
     skeleton.AttachGestureListener(new ElbowBendListener());
   }
@@ -59,7 +61,9 @@ public class esomal extends PApplet {
 
     background(0);
 
-    skeleton.drawSkeleton();
+    skeleton.updateSkeleton();
+
+    draw_stack.drawAll();
   }
 
   public static void main(String args[]) {

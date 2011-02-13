@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 41 [cleanup] (Sun Feb 13 00:10:46 EST 2011)
- * @parent 8c6c36a1702a453a8237d2068e86ebfda6a11196
+ * @version 43 [draw] (Sun Feb 13 04:13:01 EST 2011)
+ * @parent 9ba9cbadd4ae5d01d993271a392a13aeeab09f1c
  *
  * @section DESCRIPTION
  *
@@ -12,7 +12,7 @@
  *
  * MIT Media Lab
  * New Media Medicine Group
- * E14, 20 Ames Street
+ * E14, 75 Amherst Street, Cambridge MA
  * Cambridge, MA 02139 USA
  *
  */
@@ -26,6 +26,7 @@ public abstract class GestureListener implements Observer
   static final int pts_t = 256;
   static final int smpl  = 32;
   int smpl_offset; // Define differently for each class
+  DrawStack draw_stack;
 
   protected float getPercentExtension(int limb, PVector[] joints)
   {
@@ -39,6 +40,11 @@ public abstract class GestureListener implements Observer
 
     return hyp_dist/side_dist;
 
+  }
+
+  void addDrawStack(DrawStack draw_stack)
+  {
+    this.draw_stack = draw_stack;
   }
 
 

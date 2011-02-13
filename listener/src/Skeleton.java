@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 42 [cleanup] (Sun Feb 13 00:23:04 EST 2011)
- * @parent d0c6fbc0092683979cf734d67ad2e0c07cda2048
+ * @version 43 [draw] (Sun Feb 13 04:13:01 EST 2011)
+ * @parent 9ba9cbadd4ae5d01d993271a392a13aeeab09f1c
  *
  * @section DESCRIPTION
  *
@@ -13,39 +13,35 @@
  *
  * MIT Media Lab
  * New Media Medicine Group
- * E14, 20 Ames Street
+ * E14, 75 Amherst Street, Cambridge MA
  * Cambridge, MA 02139 USA
  *
  */
 
-import processing.core.*;
+import processing.core.PVector;
 
 import java.util.Observable;
 import java.util.StringTokenizer;
 
 
 public class Skeleton extends Observable {
-  private final int larm_color = 0xffE41A1C; ///< Red
-  private final int rarm_color = 0xff377EB8; ///< Blue
-  private final int lleg_color = 0xff4DAF4A; ///< Green
-  private final int rleg_color = 0xff984EA3; ///< Purple
 
-  private PApplet parent;
   private PVector[] joints;
   private PVector[] joints_p;
 
   private Socket socket;
+  private DrawStack draw_stack;
   private int user;
 
   int smpl_offset;
 
   int wait;
 
-  Skeleton(PApplet parent, Socket socket, int user)
+  Skeleton(Socket socket, DrawStack draw_stack, int user)
   {
-    this.parent = parent;
-    this.user   = user;
-    this.socket = socket;
+    this.user       = user;
+    this.socket     = socket;
+    this.draw_stack = draw_stack;
 
     socket.subscribeToUser(this.user);
 
@@ -81,6 +77,8 @@ public class Skeleton extends Observable {
     // Send gestures an update
     setChanged();
     notifyObservers();
+
+    draw_stack.add(new DrawSkeleton(joints));
   }
 
   private void processUpdateMessage(String update)
@@ -101,38 +99,6 @@ public class Skeleton extends Observable {
     joints[limb].z = Float.valueOf(t);
   }
 
-  public void drawSkeleton()
-  {
-    this.updateSkeleton();
-
-    parent.pushStyle();
-    parent.fill(255,255,255);
-
-    //for (PVector vec: joints) {
-    for (int i = 0; i < joints.length; i++){
-      parent.pushMatrix();
-      parent.translate(joints[i].x,joints[i].y,joints[i].z);
-
-      if (i == 1)
-        parent.ambientLight(255,255,255);
-
-      if ( i >=3 && i <=5)
-        parent.fill(larm_color);
-      else if ( i >=6 && i <=8)
-        parent.fill(rarm_color);
-      else if ( i >=9 && i <=11)
-        parent.fill(lleg_color);
-      else if ( i >=12 && i <=14)
-        parent.fill(rleg_color);
-
-      parent.box(50);
-      parent.popMatrix();
-    }
-    parent.popStyle();
-
-
-  }
-
   public PVector[] getSkeleton()
   {
     return joints;
@@ -142,6 +108,7 @@ public class Skeleton extends Observable {
   {
     smpl_offset = (smpl_offset + GestureListener.smpl/4 + GestureListener.smpl/8) % GestureListener.pts_t; // Gives 30 equally spaced calculation
     gesture.setSampleOffset(smpl_offset); // opportunities.
+    gesture.addDrawStack(draw_stack);
     this.addObserver((GestureListener) gesture);
   }
 
