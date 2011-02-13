@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 43 [draw] (Sun Feb 13 04:13:01 EST 2011)
- * @parent 9ba9cbadd4ae5d01d993271a392a13aeeab09f1c
+ * @version 46 [master] (Sun Feb 13 04:24:48 EST 2011)
+ * @parent 94f74327b53c3acf24b53f9f7e3edc820bf221c7
  *
  * @section DESCRIPTION
  *
@@ -36,7 +36,7 @@ public class DrawStack
     draw = parent;
     camera = cam;
 
-    draw_objects = new HashSet();
+    draw_objects = new HashSet<DrawableObject>();
 
     DrawableObject.addDrawPointer(draw);
     DrawableObject.addCamera(camera);
