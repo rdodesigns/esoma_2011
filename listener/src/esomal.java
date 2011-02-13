@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 38 [analysis] (Sat Feb 12 20:44:06 EST 2011)
- * @parent d212d6477193323b0efe69c45e874c10fe85d10d
+ * @version 42 [cleanup] (Sun Feb 13 00:23:04 EST 2011)
+ * @parent d0c6fbc0092683979cf734d67ad2e0c07cda2048
  *
  * @section DESCRIPTION
  *
@@ -52,7 +52,7 @@ public class esomal extends PApplet {
     info_grab  = new Socket();
     skeleton = new Skeleton(this, info_grab, 1);
 
-    skeleton.AttachGestureListener(new ElbowBendListener(this, cam));
+    skeleton.AttachGestureListener(new ElbowBendListener());
   }
 
   public void draw() {

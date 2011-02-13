@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 38 [analysis] (Sat Feb 12 20:44:05 EST 2011)
- * @parent d212d6477193323b0efe69c45e874c10fe85d10d
+ * @version 42 [cleanup] (Sun Feb 13 00:23:04 EST 2011)
+ * @parent d0c6fbc0092683979cf734d67ad2e0c07cda2048
  *
  * @section DESCRIPTION
  *
@@ -136,21 +136,6 @@ public class Skeleton extends Observable {
   public PVector[] getSkeleton()
   {
     return joints;
-  }
-
-  protected PVector getNormalToSkeleton(){
-    PVector vec_23 = PVector.sub(joints[3], joints[2]);
-    PVector vec_26 = PVector.sub(joints[6], joints[2]);
-
-    PVector normal = vec_26.cross(vec_23);
-    normal.normalize();
-    return normal;
-  }
-
-  public PVector getNormalOffset(){
-    PVector arm_direction = PVector.sub(joints[5], joints_p[5]);
-    arm_direction.normalize();
-    return PVector.sub(getNormalToSkeleton(), arm_direction);
   }
 
   public <E extends GestureListener> void AttachGestureListener(E gesture)

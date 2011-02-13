@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 41 [cleanup] (Sun Feb 13 00:10:46 EST 2011)
- * @parent 8c6c36a1702a453a8237d2068e86ebfda6a11196
+ * @version 42 [cleanup] (Sun Feb 13 00:23:04 EST 2011)
+ * @parent d0c6fbc0092683979cf734d67ad2e0c07cda2048
  *
  * @section DESCRIPTION
  *
@@ -50,8 +50,7 @@ public class Filters
    */
   static public ArrayList<Float> smoothing(ArrayList<Float> array, int smpl)
   {
-    System.out.println("Array size = " + array.size());
-    ArrayList<Float> output = new ArrayList<Float>(array.size());
+    ArrayList<Float> output = new ArrayList<Float>(smpl);
     float sum;
     int[] consts = {-21,14,39,54,59,54,39,14,-21};  // 9-point SG filter coefficients
     int znorm = 231;
@@ -94,7 +93,7 @@ public class Filters
    */
   static public ArrayList<Float> derivative(ArrayList<Float> array, int smpl)
   {
-    ArrayList<Float> output = new ArrayList<Float>(array.size());
+    ArrayList<Float> output = new ArrayList<Float>(smpl);
     float sum;
     int[] consts = {-4, -3, -2, -1, 0, 1, 2, 3, 4};  // 9-point SG filter coefficients
     int znorm = 60;
@@ -158,7 +157,7 @@ public class Filters
     }
   }
 
-  //static public float calculateSpeed()
+  //static public float calculateIntervalAverage()
   //{
     //float speed =0;
     //int i;
@@ -183,20 +182,4 @@ public class Filters
   //}
 
 
-
-  //static public void convolution()
-  //{
-    //float sum;
-
-    //for (int i = 0; i < smpl; i++) {
-      //larm_dist_conv.remove(0);
-      //sum = 0;
-      //for (int j = 0; j < smpl; j++) {
-        //if (64 + j - i >=80) continue;
-        //sum += larm_dist_der.get(pts_t-smpl+j)*gen_norm_2[64-i+j];
-      //}
-      //larm_dist_conv.add(sum);
-    //}
-
-  //}
 }
