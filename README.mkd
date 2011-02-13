@@ -94,4 +94,4 @@ The PeasyCam library for processing (which provides easy 3D camera control witho
 The program is then built (from the root esoma directory)
 
     cd listener
-    a
+    ant jar
