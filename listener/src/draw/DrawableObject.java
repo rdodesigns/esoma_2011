@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 43 [draw] (Sun Feb 13 04:13:01 EST 2011)
- * @parent 9ba9cbadd4ae5d01d993271a392a13aeeab09f1c
+ * @version 47 [master] (Sun Feb 13 04:27:43 EST 2011)
+ * @parent 83bc70362b251766ab104a1feeb6f67df4f0826e
  *
  * @section DESCRIPTION
  *
@@ -28,12 +28,12 @@ public abstract class DrawableObject
 
   static public void addDrawPointer(PApplet drawer)
   {
-    canvas = drawer;
+    if (canvas == null) canvas = drawer;
   }
 
   static public void addCamera(PeasyCam cam)
   {
-    camera = cam;
+    if (camera == null) camera = cam;
   }
 
   public abstract void draw();
