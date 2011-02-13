@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 38 [analysis] (Sat Feb 12 20:44:05 EST 2011)
- * @parent d212d6477193323b0efe69c45e874c10fe85d10d
+ * @version 41 [cleanup] (Sun Feb 13 00:10:46 EST 2011)
+ * @parent 8c6c36a1702a453a8237d2068e86ebfda6a11196
  *
  * @section DESCRIPTION
  *
@@ -40,6 +40,8 @@ public abstract class GestureListener implements Observer
     return hyp_dist/side_dist;
 
   }
+
+
 
   protected void setSampleOffset(int offset){
     smpl_offset = offset;
