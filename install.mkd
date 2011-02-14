@@ -103,12 +103,12 @@ Windows
 The following files should be downloaded and installed.
 
 - [Visual Studio 2010 Express C++](http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-cpp-express)
-- [Processing](http://www.processing.org) (download the version without Java).
 
 
 The following are optional but may be useful
 - [msysgit](http://code.google.com/p/msysgit/) (Git for Windows)
 - [Cygwin](http://www.cygwin.com/) (Linux like terminal)
+- [Eclipse](http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/heliossr1) (Java IDE
 
 
 ### OpenNI
@@ -153,6 +153,13 @@ Sample OpenNI programs can be found in `C:\Program Files\OpenNI\Samples\Bin\Rele
 
 ### Java
 
+  1. Download [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+  2. Install
+
+### Processing
+
+  1. Download [Processing](http://www.processing.org) (download the version without Java).
+Move processing
 
 
 ### Esoma (this repo)
