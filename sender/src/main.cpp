@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 38 [analysis] (Sat Feb 12 20:44:06 EST 2011)
- * @parent d212d6477193323b0efe69c45e874c10fe85d10d
+ * @version 48 [windows] (Mon Feb 14 12:59:58 EST 2011)
+ * @parent b527b552e1f1190d227f6694a0c47b946a5328a1
  *
  * @section DESCRIPTION
  *
@@ -169,6 +169,11 @@ int main(int argc, const char *argv[])
     else
       printf("\rSending...");
 
+#ifdef _WIN32
+    int (*sprintf_sp)( char *buffer, size_t buff_size, const char *format, ... ) = &sprintf_s;
+#else
+    int (*sprintf_sp)( char *buffer, size_t buff_size, const char *format, ... ) = &snprintf;
+#endif
 
     // Use j to number the joints (currently from 0 to 14)
     int j = 0;
@@ -185,11 +190,11 @@ int main(int argc, const char *argv[])
           || i == 23) continue; // These give odd results in z axis.
 
       zmq::message_t message(6*5);
-      snprintf((char *) message.data(), 6*5,
+
+	 sprintf_sp((char *) message.data(), 6*5,
         "%d %d %05.1f %05.1f %05.1f ", 1, j++, pos.X, pos.Y, pos.Z);
       publisher.send(message, (i == 24) ? 0 : ZMQ_SNDMORE);
     }
-
 
   }
 

@@ -7,7 +7,7 @@ BIN_DIR = build
 
 INC_DIRS = /usr/include/ni
 
-SRC_FILES = src/*.cpp
+SRC_FILES = ../../src/*.cpp
 
 EXE_NAME = esomas
 
