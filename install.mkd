@@ -1,0 +1,190 @@
+Install Instructions
+====================
+
+Mac/UNIX
+--------
+
+The following files should be downloaded and installed.
+
+- [XCode 3.2.5](https://developer.apple.com/ios/download.action?path=/ios/ios_sdk_4.2__final/xcode_3.2.5_and_ios_sdk_4.2_final.dmg)
+- [Macports](http://www.macports.org/install.php)
+- [Processing](http://www.processing.org)
+- [ZeroMQ](http://www.zeromq.org/intro:get-the-software) (this will need to be compiled by hand, a guide is located [here](http://blog.pmorelli.com/getting-zeromq-and-jzmq-running-on-mac-os-x))
+
+After all of these are downloaded and installed, run the following command from a command line (if you do not know what the command line is, you can get to it by opening the application Applications->Utilities->Terminal to get to a command line).
+
+    sudo port install libtool doxygen graphviz ant libusb-devel +universal
+
+
+### OpenNI
+
+This section is taken from the unstable branch of the OpenNI github repo.
+
+  1. Clone the git repository into a directory using `git clone git://github.com/OpenNI/OpenNI.git openni`
+  2. `cd openni/Platform/Linux-x86/CreateRedist`
+  3. Run the script RedistMaker using `python ./RedistMaker`
+  4. `cd ../Redist`
+  5. Run `sudo ./install.sh`
+
+The install script copies key files to the following location:
+
+  - Libs into: /usr/lib
+  - Bins into: /usr/bin
+  - Includes into: /usr/include/ni
+  - Config files into: /var/lib/ni
+
+To build the package manually, you can run "make" in the "Platform\Linux-x86\Build" directory.
+
+
+### NITE (Skeleton Tracking)
+
+  1. Download [NITE](http://www.openni.org/downloadfiles/openni-compliant-middleware-binaries/33-latest-unstable)
+  2. Use license key `0KOIk2JeIBYClPWVnMoRKn5cdY4=`
+  3. Move to the NITE directory (`cd Nite-*`)
+  4. `sudo ./install.sh`
+
+### SensorKinect (the kinect driver)
+
+This section is taken from the unstable branch of the SensorKinect github repo.
+
+  1. Download SensorKinect using `git clone git://github.com/avin2/SensorKinect.git sensor_kinect`
+  2. `cd sensor_kinect/Platform/Linux-x86/CreateRedist`
+  3. `python ./RedistMaker`
+  4. `cd ../Redist`
+  5. `sudo ./install.sh`
+
+The install script copies key files to the following location:
+
+  - Libs into: /usr/lib
+  - Bins into: /usr/bin
+  - Config files into: /usr/etc/primesense
+  - USB rules into: /etc/udev/rules.d
+  - Logs will be created in: /var/log/primesense
+
+To build the package manually, you can run "make" in the "Platform\Linux-x86\Build" directory.
+
+### Esoma (this repo)
+
+The Esoma package uses a C++ program to grab data from a kinect or a recording from the kinect and sends that data out through a ZeroMQ socket. This is then picked up by a Java based program to process and visualize the data. The entire package can be downloaded by cloning the repo.
+
+    git clone git://github.com/proteios/esoma.git esoma
+
+#### Sender (esomas)
+
+To build this package is relatively simple. Assuming ZeroMQ is installed, just run the following (assuming you are in esoma's root folder)
+
+    cd sender; make
+
+The result is located in `build/esomas`
+
+#### Listener (esomal)
+
+This program takes a bit more to compile because it requires the Processing library jars. However, these can all be symbolically linked in the following way.
+
+    cd listener/lib
+    ln -s /Applications/Processing.app/Contents/Resources/Java/core.jar .
+    ln -s /Applications/Processing.app/Contents/Resources/Java/libraries/opengl/library/gluegen-rt.jar .
+    ln -s /Applications/Processing.app/Contents/Resources/Java/libraries/opengl/library/jogl.jar .
+    ln -s /Applications/Processing.app/Contents/Resources/Java/libraries/opengl/library/opengl.jar .
+    ln -s /Applications/Processing.app/Contents/Resources/Java/libraries/video/library/video.jar .
+    ln -s /usr/local/share/java/zmq.jar .
+
+The PeasyCam library for processing (which provides easy 3D camera control without gimbal lock problems) can be downloaded from [here](http://mrfeinberg.com/peasycam/), and the jar file inside must be placed in `lib` with the rest of the jar files.
+
+The program is then built (from the root esoma directory)
+
+    cd listener
+    ant jar
+
+
+Windows
+-------
+
+The following files should be downloaded and installed.
+
+- [Visual Studio 2010 Express C++](http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-cpp-express)
+- [Processing](http://www.processing.org) (download the version without Java).
+
+
+The following are optional but may be useful
+- [msysgit](http://code.google.com/p/msysgit/) (Git for Windows)
+- [Cygwin](http://www.cygwin.com/) (Linux like terminal)
+
+
+### OpenNI
+
+  1. Download [OpenNI](http://www.openni.org/downloadfiles/openni-binaries/20-latest-unstable). Make sure that the file is from the unstable branch (as of this writing, 14/02/11 02:43:37).
+  2. Install with defaults.
+
+### NITE (Skeleton Tracking)
+
+  1. Download [NITE](http://www.openni.org/downloadfiles/openni-compliant-middleware-binaries/34-stable)
+  2. Install with defaults, use license key `0KOIk2JeIBYClPWVnMoRKn5cdY4=`
+
+### SensorKinect (the kinect driver)
+
+This section is taken from the unstable branch of the SensorKinect github repo.
+
+  1. Download [SensorKinect](https://github.com/avin2/SensorKinect) (press the Download button on the top right side of the page).
+  2. Navigate to `Platform\Win32\Driver`.
+  3. Run `dpinst-x86.exe` for 32-bit OS and `dpinst-amd64.exe` for 64-bit OS.
+
+### Modifying OpenNI
+
+  1. Download [SampleXML files for the Kinect](http://www.studentguru.gr/blogs/vangos/how-to-successfully-install-kinect-windows-openni-nite/KinectXMLs.zip)
+  2. Copy the XML files into the OpenNI program files.
+    1. For 32-bit OS, copy `KinectXMLs\OpenNI\SampleConfig.xml` to `C:\Program Files\OpenNI\Data`.
+    2. For 64-bit OS, copy `KinectXMLs\OpenNI\SampleConfig.xml` to `C:\Program Files (x86)\OpenNI\Data`.
+  3. Copy the XML files into the NITE program files.
+    1. For 32-bit OS, copy `KinectXMLs\NITE\{Sample-Scene.xml, Sample-Tracking.xml, Sample-User.xml}` to `C:\Program Files\Prime Sense\NITE\Data`.
+    2. For 64-bit OS, copy `KinectXMLs\NITE\{Sample-Scene.xml, Sample-Tracking.xml, Sample-User.xml}` to `C:\Program Files (x86)\Prime Sense\NITE\Data`.
+
+
+Sample OpenNI programs can be found in `C:\Program Files\OpenNI\Samples\Bin\Release` and `C:\Program Files\Prime Sense\NITE\Samples\Bin\Release`
+
+
+### ZeroMQ
+
+  1. Download [ZeroMQ](http://download.zeromq.org/zeromq-2.0.10.zip)
+  2. Open `builds/msvc/msvc.sln` in Visual Studio 2010 C++ (VS might ask about converting the solution from 2008 to 2010, let it do so).
+  3. Build the solution (either press F7 or Debug->Build Solution).
+  4. Copy the entire ZeroMQ folder to `C:\Program Files\zeromq` (32-bit) or `C:\Program Files (x86)\zeromq` (64-bit) (you can place it elsewhere, but the included VS solution assumes the ZeroMQ library is there).
+  5. Add ZeroMQ to the PATH variable by navigating to `Control Panel:System:Advanced:Environment Variables`, clicking on `PATH`, and adding `;C:\Program Files\zeromq\lib` (32-bit) or `;C:\Program Files (x86)\zeromq\lib` to the string.
+
+### Java
+
+
+
+### Esoma (this repo)
+
+The Esoma package uses a C++ program to grab data from a kinect or a recording from the kinect and sends that data out through a ZeroMQ socket. This is then picked up by a Java based program to process and visualize the data. The entire package can be downloaded by cloning the repo.
+
+    git clone git://github.com/proteios/esoma.git esoma
+
+#### Sender (esomas)
+
+To build this package is relatively simple. Assuming ZeroMQ is installed, just run the following (assuming you are in esoma's root folder)
+
+  1. Open `sender/platform/windows/esomas/esomas.sln`
+  2. Build the solution (either press F7 or Debug->Build Solution).
+
+The result is located in `bin/Debug/esomas`
+
+#### Listener (esomal)
+
+This program takes a bit more to compile because it requires the Processing library jars. However, these can all be symbolically linked in the following way.
+
+    cd listener/lib
+    ln -s /Applications/Processing.app/Contents/Resources/Java/core.jar .
+    ln -s /Applications/Processing.app/Contents/Resources/Java/libraries/opengl/library/gluegen-rt.jar .
+    ln -s /Applications/Processing.app/Contents/Resources/Java/libraries/opengl/library/jogl.jar .
+    ln -s /Applications/Processing.app/Contents/Resources/Java/libraries/opengl/library/opengl.jar .
+    ln -s /Applications/Processing.app/Contents/Resources/Java/libraries/video/library/video.jar .
+    ln -s /usr/local/share/java/zmq.jar .
+
+The PeasyCam library for processing (which provides easy 3D camera control without gimbal lock problems) can be downloaded from [here](http://mrfeinberg.com/peasycam/), and the jar file inside must be placed in `lib` with the rest of the jar files.
+
+The program is then built (from the root esoma directory)
+
+    cd listener
+    ant jar
