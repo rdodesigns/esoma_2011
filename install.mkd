@@ -151,6 +151,7 @@ Sample OpenNI programs can be found in `C:\Program Files\OpenNI\Samples\Bin\Rele
   4. Copy the entire ZeroMQ folder to `C:\Program Files\zeromq` (32-bit) or `C:\Program Files (x86)\zeromq` (64-bit) (you can place it elsewhere, but the included VS solution assumes the ZeroMQ library is there).
   5. Add ZeroMQ to the PATH variable by navigating to `Control Panel:System:Advanced:Environment Variables`, clicking on `PATH`, and adding `;C:\Program Files\zeromq\lib` (32-bit) or `;C:\Program Files (x86)\zeromq\lib` to the string.
 
+
 ### Java
 
   1. Download [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -160,6 +161,11 @@ Sample OpenNI programs can be found in `C:\Program Files\OpenNI\Samples\Bin\Rele
 
   1. Download [Processing](http://www.processing.org) (download the version without Java).
 Move processing
+
+### JZMQ
+
+  1. Download the prebuilt jars at [jzmq](https://github.com/Storkle/jzmq-native-deps)
+  2. Move the folder into `C:\Program Files\zeromq`
 
 
 ### Esoma (this repo)
@@ -195,3 +201,11 @@ The program is then built (from the root esoma directory)
 
     cd listener
     ant jar
+
+
+Mac Alternative Instructions
+============================
+
+### OpenNI from download
+  1. Make sure libusb is installed (sudo port install libusb +universal)
+  2. run `sudo ./install`

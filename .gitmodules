@@ -1,0 +1,3 @@
+[submodule "listener/jzmq"]
+	path = listener/jzmq
+	url = git://github.com/Storkle/jzmq-native-deps.git

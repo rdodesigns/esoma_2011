@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 49 [master] (Sun Feb 13 05:14:00 EST 2011)
- * @parent 5e501a314f00593732ed025f0765f69b94710178
+ * @version 55 [windows] (Wed Feb 16 23:04:02 EST 2011)
+ * @parent 6e327a7504538998cdeac4b26cbff67fde609109
  *
  * @section DESCRIPTION
  *
@@ -18,12 +18,9 @@
  * Cambridge, MA 02139 USA
  *
  */
-import java.util.Observer;
 import java.util.Observable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.lang.Math;
 
 public class ElbowBendListener extends GestureListener
 {
