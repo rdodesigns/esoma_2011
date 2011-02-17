@@ -17,7 +17,7 @@ After all of these are downloaded and installed, run the following command from 
 
 
 ### OpenNI from download
-  1. Make sure `libusb +unversal` is installed
+  1. Make sure `libusb-devel +unversal` is installed
   2. Download [OpenNI](http://www.openni.org/downloadfiles/2-openni-binaries) (from the unstable folder)
   3. Unpack the result somewhere, open Terminal and cd to that directory.
   4. `sudo ./install.sh`
@@ -25,13 +25,15 @@ After all of these are downloaded and installed, run the following command from 
 
 ### NITE from download
   1. Download [NITE](http://www.openni.org/downloadfiles/12-openni-compliant-middleware-binaries) (stable or unstable)
-  2. `sudo ./install.sh`. It will ask for a key. Use `0KOIk2JeIBYClPWVnMoRKn5cdY4=`
+  2. Unpack the result somewhere, open Terminal and cd to that directory.
+  3. `sudo ./install.sh`. It will ask for a key. Use `0KOIk2JeIBYClPWVnMoRKn5cdY4=`
 
 
 ### SensorKinect
   1. Download [SensorKinect](https://github.com/avin2/SensorKinect).
-  2. Untar the Mac binary `cd Bin; tar -zxvf SensorKinect-MacOSX*`
-  3. `cd SensorKinect-MacOSX*; sudo ./install.sh`
+  2. Unpack the result somewhere, open Terminal and cd to that directory.
+  3. Untar the Mac binary `cd Bin; tar -zxvf SensorKinect-MacOSX*`
+  4. `cd SensorKinect-MacOSX*; sudo ./install.sh`
 
 
 ### ZeroMQ
@@ -51,7 +53,8 @@ The Esoma package uses a C++ program to grab data from a kinect or a recording f
 
 To build this package is relatively simple. Assuming ZeroMQ is installed, just run the following (assuming you are in esoma's root folder)
 
-    cd sender/platform/unix/; make
+    cd sender/platform/unix/
+    make
 
 The result is located in `sender/platform/unix/build/esomas`
 
@@ -266,7 +269,8 @@ The Esoma package uses a C++ program to grab data from a kinect or a recording f
 
 To build this package is relatively simple. Assuming ZeroMQ is installed, just run the following (assuming you are in esoma's root folder)
 
-    cd sender/platform/unix/; make
+    cd sender/platform/unix/
+    make
 
 The result is located in `sender/platform/unix/build/esomas`
 
