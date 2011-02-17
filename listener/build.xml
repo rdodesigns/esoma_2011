@@ -18,9 +18,6 @@
     <delete dir="${build.dir}"/>
   </target>
 
-  <taskdef name="jarbundler"
-         classname="net.sourceforge.jarbundler.JarBundler" />
-
 
   <target name="compile" description="compile the Java source code to class files">
     <mkdir dir="${classes.dir}"/>
@@ -43,24 +40,12 @@
 
   <target name="run" depends="jar">
     <java fork="true" classname="${main-class}">
-      <sysproperty key="java.library.path" value="/usr/local/lib:/Applications/Processing.app/Contents/Resources/Java/libraries/opengl/library"/>
+      <sysproperty key="java.library.path" value="jzmq/native/macosx/x86:/Applications/Processing.app/Contents/Resources/Java/libraries/opengl/library"/>
       <classpath>
           <path refid="classpath"/>
           <path location="${jar.dir}/${ant.project.name}.jar"/>
       </classpath>
     </java>
-  </target>
-
-
-  <target name="app" depends="jar">
-    <mkdir dir="${macapp.dir}" />
-    <jarbundler dir="${macapp.dir}"
-      name="${ant.project.name}"
-      mainclass="${main-class}"
-      jar="${jar.dir}/${ant.project.name}.jar" >
-      <javafilelist dir="${lib.dir}" files="*" />
-      <javafilelist dir="/usr/local/lib" files="*" />
-    </jarbundler>
   </target>
 
 
