@@ -1,7 +1,7 @@
 Install Instructions
 ====================
 
-See `install.mkd` for install instructions.
+See the [install](https://github.com/rdodesigns/esoma/wiki/Install) wiki page for complete installation instructions.
 
 Running esoma
 =============
