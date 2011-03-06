@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 48 [windows] (Mon Feb 14 12:59:58 EST 2011)
- * @parent b527b552e1f1190d227f6694a0c47b946a5328a1
+ * @version 63 [datacollector] (Sun Mar  6 10:30:12 PST 2011)
+ * @parent 5292611a77495c3077f9bec5da87f969401ae8d6
  *
  * @section DESCRIPTION
  *
@@ -154,6 +154,8 @@ int main(int argc, const char *argv[])
 
   // Marker for the Sending... notification.
   int marker = 0;
+  Skeleton *skeleton = new Skeleton((xn::UserGenerator) user);
+
   while(!xnOSWasKeyboardHit()) {
     nRetVal = context.WaitAndUpdateAll();
     CHECK_RC(nRetVal, "WaitAndUpdateAll");
@@ -175,25 +177,16 @@ int main(int argc, const char *argv[])
     int (*sprintf_sp)( char *buffer, size_t buff_size, const char *format, ... ) = &snprintf;
 #endif
 
+    skeleton->updateSkeleton();
     // Use j to number the joints (currently from 0 to 14)
-    int j = 0;
-    for (int i = 1; i <= 24 ; i++) {
-      XnVector3D pos = GetBodyPartPosition(1, (XnSkeletonJoint) i);
-      if (   i == 4
-          || i == 5
-          || i == 8
-          || i == 10
-          || i == 11
-          || i == 14
-          || i == 16
-          || i == 19
-          || i == 23) continue; // These give odd results in z axis.
+    for (int i = 0; i < 15 ; i++) {
+      XnVector3D pos = skeleton->getJoint(i);
 
       zmq::message_t message(6*5);
 
-	 sprintf_sp((char *) message.data(), 6*5,
-        "%d %d %05.1f %05.1f %05.1f ", 1, j++, pos.X, pos.Y, pos.Z);
-      publisher.send(message, (i == 24) ? 0 : ZMQ_SNDMORE);
+      sprintf_sp((char *) message.data(), 6*5,
+        "%d %d %05.1f %05.1f %05.1f ", 1, i, pos.X, pos.Y, pos.Z);
+      publisher.send(message, (i == 14) ? 0 : ZMQ_SNDMORE);
     }
 
   }

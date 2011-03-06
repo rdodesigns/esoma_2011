@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 38 [analysis] (Sat Feb 12 20:44:06 EST 2011)
- * @parent d212d6477193323b0efe69c45e874c10fe85d10d
+ * @version 63 [datacollector] (Sun Mar  6 10:30:11 PST 2011)
+ * @parent 5292611a77495c3077f9bec5da87f969401ae8d6
  *
  * @section DESCRIPTION
  *
@@ -23,24 +23,33 @@
 // Includes
 //---------------------------------------------------------------------------
 #include "Skeleton.h"
+#include "ExtensionCollector.h"
+#include <iostream>
 
 
 //---------------------------------------------------------------------------
 // Defines
 //---------------------------------------------------------------------------
 
-extern xn::UserGenerator user;
+Skeleton::Skeleton( xn::UserGenerator user) : user(user)
+{
+  ExtensionCollector *ext_col = new ExtensionCollector(this, LARM);
+  ext_col->printSomething();
+  delete ext_col;
+}
 
-XnVector3D GetBodyPartPosition(XnUserID player, XnSkeletonJoint body_part)
+Skeleton::~Skeleton(){}
+
+XnVector3D Skeleton::GetBodyPartPosition(XnUserID player, XnSkeletonJoint body_part)
 {
   XnSkeletonJointPosition pos;
 
   user.GetSkeletonCap().GetSkeletonJointPosition(player, body_part,
                                                  pos);
-  return pos.position;
+  //return pos.position;
 }
 
-XnMatrix3X3 GetBodyPartOrientation(XnUserID player, XnSkeletonJoint body_part)
+XnMatrix3X3 Skeleton::GetBodyPartOrientation(XnUserID player, XnSkeletonJoint body_part)
 {
   XnSkeletonJointOrientation ori;
 
@@ -48,4 +57,28 @@ XnMatrix3X3 GetBodyPartOrientation(XnUserID player, XnSkeletonJoint body_part)
                                                  ori);
   return ori.orientation;
 
+}
+
+void Skeleton::updateSkeleton()
+{
+  int j = 0;
+  for (int i = 1; i <= 24 ; i++) {
+    if (   i == 4
+        || i == 5
+        || i == 8
+        || i == 10
+        || i == 11
+        || i == 14
+        || i == 16
+        || i == 19
+        || i == 23) continue; // These give odd results in z axis.
+    XnVector3D pos = GetBodyPartPosition(1, (XnSkeletonJoint) i);
+
+    joints[j++] = pos;
+  }
+}
+
+XnVector3D Skeleton::getJoint(int joint_num)
+{
+  return joints[joint_num];
 }
