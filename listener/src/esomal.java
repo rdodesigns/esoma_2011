@@ -1,18 +1,18 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 43 [draw] (Sun Feb 13 04:13:01 EST 2011)
- * @parent 9ba9cbadd4ae5d01d993271a392a13aeeab09f1c
+ * @version 64 [master] (Sun Mar  6 10:35:04 PST 2011)
+ * @parent 2071cf1994accd684ce75b738fe1eb75002eed62
  *
  * @section DESCRIPTION
  *
  * A Processing based visualization for the data obtained from the MS Kinect.
- * Interfaces with a C++ program (phinect_sender) to obtain skeletal points
- * of a player, and then shows this player's body on screen along with some
- * calculated physiological parameters. Performs gesture recognition to give
- * a score of a patients progress in a particular excerise as a method of
- * creating better patient compliance with physical therapy treatments
- * between doctors visits.
+ * Interfaces with a C++ program (esomas) to obtain skeletal points of a
+ * player, and then shows this player's body on screen along with some
+ * calculated physiological parameters. Performs gesture recognition to give a
+ * score of a patients progress in a particular excerise as a method of
+ * creating better patient compliance with physical therapy treatments between
+ * doctors visits.
  *
  * This is licensed under GPLv3.
  *
