@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 64 [master] (Sun Mar  6 10:35:04 PST 2011)
- * @parent 2071cf1994accd684ce75b738fe1eb75002eed62
+ * @version 66 [master] (Sun Mar  6 10:39:12 PST 2011)
+ * @parent 7c3a05bc0749bbe2073d3341d2ca5daf94f2d1d3
  *
  * @section DESCRIPTION
  *
@@ -17,8 +17,8 @@
  * Cambridge, MA 02139 USA
  */
 
-#ifndef __ESOMAS_CALLBACK__
-#define __ESOMAS_CALLBACK__
+#ifndef __ESOMAS__CALLBACK__
+#define __ESOMAS__CALLBACK__
 
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
