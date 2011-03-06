@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 43 [draw] (Sun Feb 13 04:13:01 EST 2011)
- * @parent 9ba9cbadd4ae5d01d993271a392a13aeeab09f1c
+ * @version 62 [datacollector] (Sun Mar  6 10:50:08 EST 2011)
+ * @parent 2071cf1994accd684ce75b738fe1eb75002eed62
  *
  * @section DESCRIPTION
  *
@@ -81,6 +81,7 @@ public class Skeleton extends Observable {
     draw_stack.add(new DrawSkeleton(joints));
   }
 
+  // TODO: Move this to DataCollector
   private void processUpdateMessage(String update)
   {
     StringTokenizer sscanf = new StringTokenizer(update, " ");
@@ -110,6 +111,12 @@ public class Skeleton extends Observable {
     gesture.setSampleOffset(smpl_offset); // opportunities.
     gesture.addDrawStack(draw_stack);
     this.addObserver((GestureListener) gesture);
+  }
+
+  // We do this in order to add only DataCollectors, ensuring safe type.
+  public <E extends DataCollector> void AttachDataCollector(E data)
+  {
+    this.addObserver((DataCollector) data);
   }
 
 } // end class
