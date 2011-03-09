@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 63 [datacollector] (Sun Mar  6 10:30:11 PST 2011)
- * @parent 5292611a77495c3077f9bec5da87f969401ae8d6
+ * @version 70 [datacollector] (Wed Mar  9 02:46:35 PST 2011)
+ * @parent 3e9ce6ed429180aed9ae40095c4e3b6f94f5caec
  *
  * @section DESCRIPTION
  *
@@ -14,7 +14,7 @@
  *
  * MIT Media Lab
  * New Media Medicine Group
- * E14, 20 Ames Street
+ * E14, 75 Amherst Street, Cambridge MA
  * Cambridge, MA 02139 USA
  *
  */
@@ -33,9 +33,7 @@
 
 Skeleton::Skeleton( xn::UserGenerator user) : user(user)
 {
-  ExtensionCollector *ext_col = new ExtensionCollector(this, LARM);
-  ext_col->printSomething();
-  delete ext_col;
+  ext_col = new ExtensionCollector(this, LARM);
 }
 
 Skeleton::~Skeleton(){}
@@ -76,6 +74,7 @@ void Skeleton::updateSkeleton()
 
     joints[j++] = pos;
   }
+
 }
 
 XnVector3D Skeleton::getJoint(int joint_num)
