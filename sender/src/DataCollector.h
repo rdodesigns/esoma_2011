@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 71 [datacollector] (Mon Mar 21 02:00:56 EDT 2011)
- * @parent f78bd7d036fabcf3e64bf15c5d9b1cc202fb081c
+ * @version 72 [datacollector] (Mon Mar 21 02:49:10 EDT 2011)
+ * @parent 8915da6c46e020833a3f13744b6e2daa8cceeaa9
  *
  * @section DESCRIPTION
  *
@@ -24,18 +24,15 @@
 #include <XnCppWrapper.h>
 #include <math.h>
 
-//#include "Skeleton.h"
-
-class Skeleton;
-
+#include "Skeleton.h"
 
 class DataCollector
 {
   public:
-    DataCollector(Skeleton *skeleton) : skeleton(skeleton){}
+    DataCollector(Skeleton *skel);
     ~DataCollector(){}
 
-    virtual void collectData() = 0;
+    virtual void update() = 0;
   protected:
     Skeleton *skeleton;
     float getDistance(XnVector3D vec1, XnVector3D vec2);

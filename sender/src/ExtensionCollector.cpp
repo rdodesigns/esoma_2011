@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 71 [datacollector] (Mon Mar 21 02:00:56 EDT 2011)
- * @parent f78bd7d036fabcf3e64bf15c5d9b1cc202fb081c
+ * @version 72 [datacollector] (Mon Mar 21 02:49:10 EDT 2011)
+ * @parent 8915da6c46e020833a3f13744b6e2daa8cceeaa9
  *
  * @section DESCRIPTION
  *
@@ -43,12 +43,12 @@ float ExtensionCollector::getExtension()
 {
   float proximal_length = getDistance(skeleton->joints[limb.num], skeleton->joints[limb.num+1]);
   float distal_length = getDistance(skeleton->joints[limb.num+1], skeleton->joints[limb.num+2]);
-  float total_length = getDistance(skeleton->joints[limb.num], skeleton->joints[limb.num+2]);
+  float direct_length = getDistance(skeleton->joints[limb.num], skeleton->joints[limb.num+2]);
 
-  return ((proximal_length + distal_length) / total_length);
+  return (direct_length / (proximal_length + distal_length) );
 }
 
-void ExtensionCollector::collectData()
+void ExtensionCollector::update()
 {
-
+  float throw_away = getExtension();
 }

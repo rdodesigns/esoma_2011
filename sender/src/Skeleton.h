@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 71 [datacollector] (Mon Mar 21 02:00:57 EDT 2011)
- * @parent f78bd7d036fabcf3e64bf15c5d9b1cc202fb081c
+ * @version 72 [datacollector] (Mon Mar 21 02:49:10 EDT 2011)
+ * @parent 8915da6c46e020833a3f13744b6e2daa8cceeaa9
  *
  * @section DESCRIPTION
  *
@@ -24,8 +24,7 @@
 
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
-
-#include "ExtensionCollector.h"
+#include <vector>
 
 // Define the numbers for the body joints.
 #define LARM 3
@@ -33,7 +32,7 @@
 #define LLEG 9
 #define RLEG 12
 
-class ExtensionCollector;
+class DataCollector;
 
 class Skeleton
 {
@@ -47,11 +46,14 @@ class Skeleton
     XnVector3D getJoint(int joint_num);
 
     XnVector3D joints[15];
+
+    void addCollector(DataCollector *collector);
+    void notify();
   protected:
 
   private:
     xn::UserGenerator user;
-    ExtensionCollector *ext_col;
+    std::vector < class DataCollector * > collectors;
 
 };
 

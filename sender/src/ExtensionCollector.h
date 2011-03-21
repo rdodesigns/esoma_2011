@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 71 [datacollector] (Mon Mar 21 02:00:56 EDT 2011)
- * @parent f78bd7d036fabcf3e64bf15c5d9b1cc202fb081c
+ * @version 72 [datacollector] (Mon Mar 21 02:49:10 EDT 2011)
+ * @parent 8915da6c46e020833a3f13744b6e2daa8cceeaa9
  *
  * @section DESCRIPTION
  *
@@ -25,7 +25,6 @@
 //#include <vector.h>
 #include <iostream>
 
-#include "Skeleton.h"
 #include "DataCollector.h"
 
 
@@ -41,10 +40,9 @@ class ExtensionCollector : protected DataCollector
     ~ExtensionCollector();
 
     float getExtension();
-    void collectData();
+    void update();
   private:
     struct limb_s limb;
-    //vector<int> limbs_over_time; // Can an initial size be set?
 };
 
 

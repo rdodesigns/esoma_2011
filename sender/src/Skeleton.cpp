@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 70 [datacollector] (Wed Mar  9 02:46:35 PST 2011)
- * @parent 3e9ce6ed429180aed9ae40095c4e3b6f94f5caec
+ * @version 72 [datacollector] (Mon Mar 21 02:49:10 EDT 2011)
+ * @parent 8915da6c46e020833a3f13744b6e2daa8cceeaa9
  *
  * @section DESCRIPTION
  *
@@ -33,7 +33,6 @@
 
 Skeleton::Skeleton( xn::UserGenerator user) : user(user)
 {
-  ext_col = new ExtensionCollector(this, LARM);
 }
 
 Skeleton::~Skeleton(){}
@@ -75,9 +74,22 @@ void Skeleton::updateSkeleton()
     joints[j++] = pos;
   }
 
+  notify(); // Notify all observing data collectors.
+
 }
 
 XnVector3D Skeleton::getJoint(int joint_num)
 {
   return joints[joint_num];
+}
+
+void Skeleton::addCollector(DataCollector *collector)
+{
+  collectors.push_back(collector);
+}
+
+void Skeleton::notify()
+{
+  for (int i = 0; i < collectors.size(); i++)
+    collectors[i]->update();
 }

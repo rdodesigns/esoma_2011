@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 70 [datacollector] (Wed Mar  9 02:46:35 PST 2011)
- * @parent 3e9ce6ed429180aed9ae40095c4e3b6f94f5caec
+ * @version 72 [datacollector] (Mon Mar 21 02:49:10 EDT 2011)
+ * @parent 8915da6c46e020833a3f13744b6e2daa8cceeaa9
  *
  * @section DESCRIPTION
  *
@@ -33,6 +33,7 @@
 
 #include "Callback.h"
 #include "Skeleton.h"
+#include "ExtensionCollector.h"
 
 //---------------------------------------------------------------------------
 // Defines
@@ -154,7 +155,8 @@ int main(int argc, const char *argv[])
 
   // Marker for the Sending... notification.
   int marker = 0;
-  Skeleton *skeleton = new Skeleton((xn::UserGenerator) user);
+  Skeleton skeleton((xn::UserGenerator) user);
+  ExtensionCollector ext_col(&skeleton, LARM);
 
   while(!xnOSWasKeyboardHit()) {
     nRetVal = context.WaitAndUpdateAll();
@@ -177,10 +179,10 @@ int main(int argc, const char *argv[])
     int (*sprintf_sp)( char *buffer, size_t buff_size, const char *format, ... ) = &snprintf;
 #endif
 
-    skeleton->updateSkeleton();
+    skeleton.updateSkeleton();
     // Use j to number the joints (currently from 0 to 14)
     for (int i = 0; i < 15 ; i++) {
-      XnVector3D pos = skeleton->getJoint(i);
+      XnVector3D pos = skeleton.getJoint(i);
 
       zmq::message_t message(6*5);
 
