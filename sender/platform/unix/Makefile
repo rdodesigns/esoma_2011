@@ -35,6 +35,7 @@ OSTYPE := $(shell uname -s)
 # change c struct alignment options to be compatable with Win32
 ifneq ("$(OSTYPE)","Darwin")
 	CFLAGS += -malign-double
+	CXX= llvm-g++
 else
 	#CFLAGS += -arch i386 -arch x86_64
 	#LDFLAGS += -arch i386 -arch x86_64

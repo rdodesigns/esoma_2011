@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 70 [datacollector] (Wed Mar  9 02:46:35 PST 2011)
- * @parent 3e9ce6ed429180aed9ae40095c4e3b6f94f5caec
+ * @version 71 [datacollector] (Mon Mar 21 02:00:57 EDT 2011)
+ * @parent f78bd7d036fabcf3e64bf15c5d9b1cc202fb081c
  *
  * @section DESCRIPTION
  *
@@ -25,16 +25,20 @@
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 
+#include "ExtensionCollector.h"
+
 // Define the numbers for the body joints.
 #define LARM 3
 #define RARM 6
 #define LLEG 9
 #define RLEG 12
 
+class ExtensionCollector;
+
 class Skeleton
 {
   public:
-    Skeleton( xn::UserGenerator user);
+    Skeleton(xn::UserGenerator user);
     ~Skeleton();
     XnMatrix3X3 GetBodyPartOrientation(XnUserID player, XnSkeletonJoint body_part);
     XnVector3D GetBodyPartPosition(XnUserID player, XnSkeletonJoint body_part);
@@ -42,8 +46,8 @@ class Skeleton
     void updateSkeleton();
     XnVector3D getJoint(int joint_num);
 
-  protected:
     XnVector3D joints[15];
+  protected:
 
   private:
     xn::UserGenerator user;

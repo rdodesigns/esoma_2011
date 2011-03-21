@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 70 [datacollector] (Wed Mar  9 02:46:34 PST 2011)
- * @parent 3e9ce6ed429180aed9ae40095c4e3b6f94f5caec
+ * @version 71 [datacollector] (Mon Mar 21 02:00:56 EDT 2011)
+ * @parent f78bd7d036fabcf3e64bf15c5d9b1cc202fb081c
  *
  * @section DESCRIPTION
  *
@@ -15,3 +15,10 @@
  * E14, 75 Amherst Street, Cambridge MA
  * Cambridge, MA 02139 USA
  */
+
+#include "DataCollector.h"
+
+float DataCollector::getDistance(XnVector3D vec1, XnVector3D vec2)
+{
+  return sqrt(pow(vec1.X - vec2.X, 2) + pow(vec1.Y - vec2.Y, 2) + pow(vec1.Z - vec2.Z, 2));
+}

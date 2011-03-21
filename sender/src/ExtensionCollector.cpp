@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 70 [datacollector] (Wed Mar  9 02:46:34 PST 2011)
- * @parent 3e9ce6ed429180aed9ae40095c4e3b6f94f5caec
+ * @version 71 [datacollector] (Mon Mar 21 02:00:56 EDT 2011)
+ * @parent f78bd7d036fabcf3e64bf15c5d9b1cc202fb081c
  *
  * @section DESCRIPTION
  *
@@ -39,8 +39,16 @@ ExtensionCollector::~ExtensionCollector()
 }
 
 
-// TODO: Add extension calculations (note skeleton.joints[15] is protected).
 float ExtensionCollector::getExtension()
 {
-  //Xn
+  float proximal_length = getDistance(skeleton->joints[limb.num], skeleton->joints[limb.num+1]);
+  float distal_length = getDistance(skeleton->joints[limb.num+1], skeleton->joints[limb.num+2]);
+  float total_length = getDistance(skeleton->joints[limb.num], skeleton->joints[limb.num+2]);
+
+  return ((proximal_length + distal_length) / total_length);
+}
+
+void ExtensionCollector::collectData()
+{
+
 }
