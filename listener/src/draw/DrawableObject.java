@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 47 [master] (Sun Feb 13 04:27:43 EST 2011)
- * @parent 83bc70362b251766ab104a1feeb6f67df4f0826e
+ * @version 75 [master] (Mon Mar 21 05:47:43 EDT 2011)
+ * @parent 132af61bc80c4968ff5a120e9c8746bb42381213
  *
  * @section DESCRIPTION
  *
@@ -10,10 +10,12 @@
  *
  * This is licensed under GPLv3.
  *
- * MIT Media Lab
- * New Media Medicine Group
- * E14, 75 Amherst Street, Cambridge MA
- * Cambridge, MA 02139 USA
+ * This work was conceptualized and created by Ryan Orendorff, Jan 2011.
+ *
+ * Contact Information
+ *  email: esoma@rdodesigns.com
+ *    www: http://www.rdodesigns.com
+ * github: https://github.com/rdodesigns
  */
 
 import processing.core.PApplet;

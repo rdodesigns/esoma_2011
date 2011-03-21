@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 48 [windows] (Mon Feb 14 12:59:58 EST 2011)
- * @parent b527b552e1f1190d227f6694a0c47b946a5328a1
+ * @version 75 [master] (Mon Mar 21 05:47:43 EDT 2011)
+ * @parent 132af61bc80c4968ff5a120e9c8746bb42381213
  *
  * @section DESCRIPTION
  *
@@ -12,11 +12,27 @@
  *
  * This is licensed under GPLv3.
  *
+ * This work was conceptualized and created by Ryan Orendorff, Jan 2011.
+ * Resources and brainstorming assistance provided through a collaboration with
+ * the MIT Media Lab and Tufts University. Contact information is provided
+ * below.
+ *
+ * Ryan Orendorff
+ *  email: esoma@rdodesigns.com
+ *    www: http://www.rdodesigns.com
+ * github: https://github.com/rdodesigns
+ *
+ * Dr. John Moore
  * MIT Media Lab
  * New Media Medicine Group
  * E14, 20 Ames Street
  * Cambridge, MA 02139 USA
  *
+ * Professor Fiorenzo Omenetto
+ * Tufts University
+ * Department of Biomedical Engineering
+ * 4 Colby Street
+ * Medford, MA 02155 USA
  */
 
 //---------------------------------------------------------------------------
