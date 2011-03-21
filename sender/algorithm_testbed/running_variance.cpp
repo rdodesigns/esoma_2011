@@ -1,3 +1,40 @@
+/**
+ * @file
+ * @author Ryan Orendorff <ryan@rdodesigns.com>
+ * @version 74 [algorithms] (Mon Mar 21 05:24:28 EDT 2011)
+ * @parent 6d37c047634159459cb4debb064ea4eb3704166c
+ *
+ * @section DESCRIPTION
+ *
+ * The functions for acquiring useful data out of the Kinect using the OpenNI
+ * framework. These mostly act as bridges to preexisting methods that provide
+ * additional information in less convenient structs.
+ *
+ * This is licensed under GPLv3.
+ *
+ * This work was conceptualized and created by Ryan Orendorff, Jan 2011.
+ * Resources and brainstorming assistance provided through a collaboration with
+ * the MIT Media Lab and Tufts University. Contact information is provided
+ * below.
+ *
+ * Ryan Orendorff
+ *  email: ryan@rdodesigns.com
+ *    www: http://www.rdodesigns.com
+ * github: https://github.com/rdodesigns
+ *
+ * Dr. John Moore
+ * MIT Media Lab
+ * New Media Medicine Group
+ * E14, 20 Ames Street
+ * Cambridge, MA 02139 USA
+ *
+ * Professor Fiorenzo Omenetto
+ * Tufts University
+ * Department of Biomedical Engineering
+ * 4 Colby Street
+ * Medford, MA 02155 USA
+ */
+
 #include <iostream>
 #include <vector>
 #include <queue>
