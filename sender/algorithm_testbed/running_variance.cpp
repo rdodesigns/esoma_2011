@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 74 [algorithms] (Mon Mar 21 05:24:28 EDT 2011)
- * @parent 6d37c047634159459cb4debb064ea4eb3704166c
+ * @version 77 [algorithms] (Mon Mar 21 05:50:14 EDT 2011)
+ * @parent dfe253bbd15c99b209f9e824900e988faf082d8a
  *
  * @section DESCRIPTION
  *
@@ -18,7 +18,7 @@
  * below.
  *
  * Ryan Orendorff
- *  email: ryan@rdodesigns.com
+ *  email: esoma@rdodesigns.com
  *    www: http://www.rdodesigns.com
  * github: https://github.com/rdodesigns
  *
