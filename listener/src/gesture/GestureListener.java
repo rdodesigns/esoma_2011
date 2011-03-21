@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 44 [master] (Sun Feb 13 04:17:21 EST 2011)
- * @parent 426daa04f78e6e09361d6fccffd6e0c548cf4f24
+ * @version 75 [master] (Mon Mar 21 05:47:43 EDT 2011)
+ * @parent 132af61bc80c4968ff5a120e9c8746bb42381213
  *
  * @section DESCRIPTION
  *
@@ -10,11 +10,12 @@
  *
  * This is licensed under GPLv3.
  *
- * MIT Media Lab
- * New Media Medicine Group
- * E14, 75 Amherst Street, Cambridge MA
- * Cambridge, MA 02139 USA
+ * This work was conceptualized and created by Ryan Orendorff, Jan 2011.
  *
+ * Contact Information
+ *  email: esoma@rdodesigns.com
+ *    www: http://www.rdodesigns.com
+ * github: https://github.com/rdodesigns
  */
 import processing.core.PVector;
 
