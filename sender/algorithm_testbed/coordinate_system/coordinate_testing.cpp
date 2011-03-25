@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 80 [algorithms] (Thu Mar 24 19:54:01 EDT 2011)
- * @parent b02879b356753f6df526f65c1c1cb1790dc09722
+ * @version 81 [algorithms] (Fri Mar 25 00:47:25 EDT 2011)
+ * @parent f54be4bc5895feecc1b55d179657a84d5e762343
  *
  * @section DESCRIPTION
  *
@@ -33,10 +33,22 @@
  * Medford, MA 02155 USA
  */
 
-#include "CoordinateData.h"
+#include "CoordinateData3D.h"
+#include <iostream>
+
+#define ZR .707106781187
+using namespace std;
 
 int main()
 {
-  CoordinateData data(3, CARTESIAN);
+  CoordinateData3D data(CARTESIAN);
+
+  data.addXnVector3D((XnVector3D) {1,1,1});
+  data.translate((XnVector3D) {1,1,1});
+  data.resetTranslation();
+  data.rotate((XnMatrix3X3) {ZR, ZR, 0, -ZR, ZR, 0, 0, 0, 1});
+
+  XnVector3D results = data[0];
+  cout << "Data is " << results.X << ", " << results.Y << ", " << results.Z << endl;
   return 0;
 }

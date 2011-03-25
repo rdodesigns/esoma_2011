@@ -5,7 +5,7 @@ OSTYPE := $(shell uname -s)
 
 BIN_DIR = ../build
 
-#INC_DIRS = /usr/include/ni
+INC_DIRS = /usr/include/ni
 
 SRC_FILES = *.cpp
 
