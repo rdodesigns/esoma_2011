@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 81 [algorithms] (Fri Mar 25 00:47:25 EDT 2011)
- * @parent f54be4bc5895feecc1b55d179657a84d5e762343
+ * @version 83 [algorithms] (Fri Mar 25 04:38:29 EDT 2011)
+ * @parent 3f60445abc32c3abf427594723d8076e7f2bac50
  *
  * @section DESCRIPTION
  *
@@ -37,18 +37,50 @@
 #include <iostream>
 
 #define ZR .707106781187
+#define SIZE 3
+
+#define PRINTOUT \
+  for (int i = 0; i < SIZE; i++){\
+    results = data[i];\
+    cout << results.X << ", " << results.Y << ", " << results.Z << endl;\
+  }\
+  cout << endl;
+
+
 using namespace std;
 
 int main()
 {
-  CoordinateData3D data(CARTESIAN);
+  CoordinateData3D data;
+  XnVector3D results;
 
-  data.addXnVector3D((XnVector3D) {1,1,1});
+  // Load in data points
+  data.addXnVector3D((XnVector3D) {0,1,2});
+  data.addXnVector3D((XnVector3D) {3,4,5});
+  data.addXnVector3D((XnVector3D) {6,7,8});
+  PRINTOUT
+
+
   data.translate((XnVector3D) {1,1,1});
-  data.resetTranslation();
-  data.rotate((XnMatrix3X3) {ZR, ZR, 0, -ZR, ZR, 0, 0, 0, 1});
+  PRINTOUT
 
-  XnVector3D results = data[0];
-  cout << "Data is " << results.X << ", " << results.Y << ", " << results.Z << endl;
+  data.translate((XnVector3D) {3,0,7});
+  PRINTOUT
+
+  //data.resetTranslation();
+  //PRINTOUT
+
+
+  data.rotate((XnMatrix3X3) {ZR, ZR, 0, -ZR, ZR, 0, 0, 0, 1});
+  PRINTOUT
+
+  data.rotate((XnMatrix3X3) {ZR, ZR, 0, -ZR, ZR, 0, 0, 0, 1});
+  PRINTOUT
+
+
+  data.resetRotation();
+  data.resetTranslation();
+  PRINTOUT
+
   return 0;
 }
