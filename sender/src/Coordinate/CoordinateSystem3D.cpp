@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 87 [algorithms] (Fri Mar 25 23:49:25 EDT 2011)
- * @parent cdaa38519a5ff8511490acf367281c50ad8b49f3
+ * @version 102 [complete_skel] (Sat Mar 26 04:33:14 EDT 2011)
+ * @parent 4cd1420ad9e65d046ded8d24406d2e23f98c5769
  *
  * @section DESCRIPTION
  *
@@ -19,6 +19,13 @@
  * github: https://github.com/rdodesigns
  */
 #include "CoordinateSystem3D.h"
+
+#define RADIUS X
+#define PHI    Y
+#define THETA  Z
+
+typedef XnVector3D XnVector3DSph;
+typedef XnVector3D XnVector3DCyl;
 
 CoordinateSystem3D::CoordinateSystem3D(vector<XnVector3D> &data) : data(data)
 {
@@ -193,10 +200,10 @@ void CoordinateSystem3D::convertSphericalToCartesian()
   vector<XnVector3D>::iterator it;
 
   for (it = data.begin(); it < data.end(); it++) {
-    XnVector3D old = *it;
-    it->X = old.X*sin(old.Z)*cos(old.Y);
-    it->Y = old.X*sin(old.Z)*sin(old.Y);
-    it->Z = old.X*cos(old.Z);
+    XnVector3DSph old = *it;
+    it->X = old.RADIUS*sin(old.THETA)*cos(old.PHI);
+    it->Y = old.RADIUS*sin(old.THETA)*sin(old.PHI);
+    it->Z = old.RADIUS*cos(old.THETA);
   }
 
   type = CARTESIAN;
@@ -211,9 +218,9 @@ void CoordinateSystem3D::convertCylindricalToCartesian()
   vector<XnVector3D>::iterator it;
 
   for (it = data.begin(); it < data.end(); it++) {
-    XnVector3D old = *it;
-    it->X = old.X*cos(old.Y);
-    it->Y = old.X*sin(old.Y);
+    XnVector3DSph old = *it;
+    it->X = old.RADIUS*cos(old.PHI);
+    it->Y = old.RADIUS*sin(old.PHI);
     //it->Z = old.Z;
   }
 
@@ -228,20 +235,20 @@ void CoordinateSystem3D::convertCylindricalToCartesian()
  *   z = z                                      */
 void CoordinateSystem3D::convertCartesianToCylindrical()
 {
-  vector<XnVector3D>::iterator it;
+  vector<XnVector3DCyl>::iterator it;
 
   for (it = data.begin(); it < data.end(); it++) {
     XnVector3D old = *it;
-    it->X = sqrt(pow(old.X,2) + pow(old.Y,2));
+    it->RADIUS = sqrt(pow(old.X,2) + pow(old.Y,2));
 
     if (old.X == 0 && old.Y == 0) {
-      it->Y = 0;
+      it->PHI = 0;
     }
     else if (old.X >=0){
-      it->Y = asin(old.Y/it->X);
+      it->PHI = asin(old.Y/it->RADIUS);
     }
     else if (old.X < 0){
-      it->Y = -asin(old.Y/it->X) + 3.14159265;
+      it->PHI = -asin(old.Y/it->RADIUS) + 3.14159265;
     }
 
     //it->Z = old.Z;
@@ -256,13 +263,13 @@ void CoordinateSystem3D::convertCartesianToCylindrical()
  * z = rho * cos(theta)           */
 void CoordinateSystem3D::convertSphericalToCylindrical()
 {
-  vector<XnVector3D>::iterator it;
+  vector<XnVector3DCyl>::iterator it;
 
   for (it = data.begin(); it < data.end(); it++) {
-    XnVector3D old = *it;
-    it->X = old.X*sin(old.Z);
-    //it->Y = old.Y;
-    it->Z = old.X*cos(old.Z);
+    XnVector3DSph old = *it;
+    it->RADIUS = old.RADIUS*sin(old.THETA);
+    //it->PHI = old.PHI;
+    it->Z = old.RADIUS*cos(old.THETA);
   }
 
   type = CYLINDRICAL;
@@ -274,13 +281,13 @@ void CoordinateSystem3D::convertSphericalToCylindrical()
  * theta = atan2(r/z) = acos(z/rho)                             */
 void CoordinateSystem3D::convertCylindricalToSpherical()
 {
-  vector<XnVector3D>::iterator it;
+  vector<XnVector3DSph>::iterator it;
 
   for (it = data.begin(); it < data.end(); it++) {
-    XnVector3D old = *it;
-    it->X = sqrt(pow(old.X,2) + pow(old.Z,2));
-    //it->Y = old.Y;
-    it->Z = acos(old.Z/it->X);
+    XnVector3DCyl old = *it;
+    it->RADIUS = sqrt(pow(old.RADIUS,2) + pow(old.Z,2));
+    //it->PHI = old.PHI;
+    it->THETA = acos(old.Z/it->RADIUS);
   }
 
   type = SPHERICAL;
@@ -292,14 +299,14 @@ void CoordinateSystem3D::convertCylindricalToSpherical()
  * theta = acos(z/r)           */
 void CoordinateSystem3D::convertCartesianToSpherical()
 {
-  vector<XnVector3D>::iterator it;
+  vector<XnVector3DSph>::iterator it;
 
   for (it = data.begin(); it < data.end(); it++) {
     XnVector3D old = *it;
-    it->X = sqrt(pow(old.X,2) + pow(old.Y,2) + pow(old.Z,2) );
+    it->RADIUS = sqrt(pow(old.X,2) + pow(old.Y,2) + pow(old.Z,2) );
     double new_y = atan2(old.Y,old.X);
-    it->Y = ( (new_y < 0) ) ? new_y + 2*3.14159265 : new_y;
-    it->Z = acos(old.Z/it->X);
+    it->PHI = ( (new_y < 0) ) ? new_y + 2*3.14159265 : new_y;
+    it->THETA = acos(old.Z/it->RADIUS);
   }
 
 
