@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 84 [algorithms] (Fri Mar 25 04:46:37 EDT 2011)
- * @parent 0971f2c76d58c46dc05bd0d6d276a0d6fbdb194b
+ * @version 85 [algorithms] (Fri Mar 25 23:27:00 EDT 2011)
+ * @parent 4f1367c34178bc802352e74b0e76a15e405ec896
  *
  * @section DESCRIPTION
  *
@@ -12,15 +12,11 @@
  * This is licensed under GPLv3.
  *
  * This work was conceptualized and created by Ryan Orendorff, Jan 2011.
- * Resources and brainstorming assistance provided through a collaboration with
- * the MIT Media Lab and Tufts University. Contact information is provided
- * below.
  *
  * Contact
  *  email: esoma@rdodesigns.com
  *    www: http://www.rdodesigns.com
  * github: https://github.com/rdodesigns
- *
  */
 #include "CoordinateSystem3D.h"
 
@@ -65,7 +61,7 @@ void CoordinateSystem3D::rotate(XnMatrix3X3 rot)
    * rotation. This can be thought of rotation A, followed by B, followed by
    * C. The result is
    *
-   *  A*B*C*C^T*B^T*A^T
+   *  A*B*C*...*C^T*B^T*A^T
    *  = A*B*I*B^T*A^T
    *  = A*I*I*A^T
    *  = I*I*I = I
@@ -111,7 +107,201 @@ void CoordinateSystem3D::rotate(XnMatrix3X3 rot)
 
 void CoordinateSystem3D::resetRotation()
 {
+  // The rotation is already the product of the transposed rotations.
   rotate(rotation);
 
-  rotation = (XnMatrix3X3) {1,0,0,0,1,0,0,0,1};
+  // Reset to identity matrix.
+  rotation = (XnMatrix3X3) {1,0,0,0,1,0,0,0,1}; // I
+}
+
+//-----------------------------------------------------------------------------
+// Converting functions
+//-----------------------------------------------------------------------------
+
+void CoordinateSystem3D::convertToCoordinateSystem(int to)
+{
+  switch (to)
+  {
+    case CARTESIAN:
+      switch (type)
+      {
+        case CARTESIAN:
+          return; // Same as initial type
+          break;
+        case SPHERICAL:
+          convertSphericalToCartesian();
+          break;
+        case CYLINDRICAL:
+          convertCylindricalToCartesian();
+          break;
+      }
+
+      break;
+
+
+    case SPHERICAL:
+      switch (type)
+      {
+        case CARTESIAN:
+          convertCartesianToSpherical();
+          break;
+        case SPHERICAL:
+          return; // Same as initial type
+          break;
+        case CYLINDRICAL:
+          convertCylindricalToSpherical();
+          break;
+      }
+
+      break;
+
+
+    case CYLINDRICAL:
+      switch (type)
+      {
+        case CARTESIAN:
+          convertCartesianToCylindrical();
+          break;
+        case SPHERICAL:
+          convertSphericalToCylindrical();
+          break;
+        case CYLINDRICAL:
+          return; // Same as initial type
+          break;
+      }
+      break;
+
+
+    default: // Gave an invalid type to function.
+      throw 2;
+      break;
+  }
+}
+
+
+// NOTE:
+// X = x, r
+// Y = y, phi
+// Z = z, theta
+
+/* From Spherical to Cartesian   *
+ * x = r*sin(theta)*cos(phi)     *
+ * y = r*sin(theta)*sin(phi)     *
+ * z = r*cos(theta)              */
+void CoordinateSystem3D::convertSphericalToCartesian()
+{
+  vector<XnVector3D>::iterator it;
+
+  for (it = data.begin(); it < data.end(); it++) {
+    XnVector3D old = *it;
+    it->X = old.X*sin(old.Z)*cos(old.Y);
+    it->Y = old.X*sin(old.Z)*sin(old.Y);
+    it->Z = old.X*cos(old.Z);
+  }
+
+  type = CARTESIAN;
+}
+
+/* From Cylindrical to Cartesian *
+ * x = r * cos(phi)              *
+ * y = r * sin(phi)              *
+ * z = z                         */
+void CoordinateSystem3D::convertCylindricalToCartesian()
+{
+  vector<XnVector3D>::iterator it;
+
+  for (it = data.begin(); it < data.end(); it++) {
+    XnVector3D old = *it;
+    it->X = old.X*cos(old.Y);
+    it->Y = old.X*sin(old.Y);
+    //it->Z = old.Z;
+  }
+
+  type = CARTESIAN;
+}
+
+/* From Cartesian to Cylindrical                *
+ *   r = sqrt(x^2 + y^2)                        *
+ *      | 0                    if x==0 && y==0  *
+ * phi =| arcsin(y/r)          if x >= 0        *
+ *      | -arcsin(y/r) + pi    if x < 0         *
+ *   z = z                                      */
+void CoordinateSystem3D::convertCartesianToCylindrical()
+{
+  vector<XnVector3D>::iterator it;
+
+  for (it = data.begin(); it < data.end(); it++) {
+    XnVector3D old = *it;
+    it->X = sqrt(pow(old.X,2) + pow(old.Y,2));
+
+    if (old.X == 0 && old.Y == 0) {
+      it->Y = 0;
+    }
+    else if (old.X >=0){
+      it->Y = asin(old.Y/it->X);
+    }
+    else if (old.X < 0){
+      it->Y = -asin(old.Y/it->X) + 3.14159265;
+    }
+
+    //it->Z = old.Z;
+  }
+
+  type = CYLINDRICAL;
+}
+
+/* From Spherical to Cynlindrical *
+ * r = rho * sin(theta)           *
+ * phi = phi                      *
+ * z = rho * cos(theta)           */
+void CoordinateSystem3D::convertSphericalToCylindrical()
+{
+  vector<XnVector3D>::iterator it;
+
+  for (it = data.begin(); it < data.end(); it++) {
+    XnVector3D old = *it;
+    it->X = old.X*sin(old.Z);
+    //it->Y = old.Y;
+    it->Z = old.X*cos(old.Z);
+  }
+
+  type = CYLINDRICAL;
+}
+
+/* From Cylindrical (r, phi, z) to Spherical (rho, phi, theta)  *
+ * rho   = sqrt(r^2 + z^2)                                      *
+ * phi   = phi                                                  *
+ * theta = atan2(r/z) = acos(z/rho)                             */
+void CoordinateSystem3D::convertCylindricalToSpherical()
+{
+  vector<XnVector3D>::iterator it;
+
+  for (it = data.begin(); it < data.end(); it++) {
+    XnVector3D old = *it;
+    it->X = sqrt(pow(old.X,2) + pow(old.Z,2));
+    //it->Y = old.Y;
+    it->Z = acos(old.Z/it->X);
+  }
+
+  type = SPHERICAL;
+}
+
+/* From Cartesian to Spherical *
+ * r = sqrt(x^2+y^2+z^2)       *
+ * phi = atan2(y/x)            *
+ * theta = acos(z/r)           */
+void CoordinateSystem3D::convertCartesianToSpherical()
+{
+  vector<XnVector3D>::iterator it;
+
+  for (it = data.begin(); it < data.end(); it++) {
+    XnVector3D old = *it;
+    it->X = sqrt(pow(old.X,2) + pow(old.Y,2) + pow(old.Z,2) );
+    double new_y = atan2(old.Y,old.X);
+    it->Y = ( (new_y < 0) ) ? new_y + 2*3.14159265 : new_y;
+    it->Z = acos(old.Z/it->X);
+  }
+
+
+  type = SPHERICAL;
 }

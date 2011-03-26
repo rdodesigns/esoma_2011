@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 83 [algorithms] (Fri Mar 25 04:38:29 EDT 2011)
- * @parent 3f60445abc32c3abf427594723d8076e7f2bac50
+ * @version 85 [algorithms] (Fri Mar 25 23:27:00 EDT 2011)
+ * @parent 4f1367c34178bc802352e74b0e76a15e405ec896
  *
  * @section DESCRIPTION
  *
@@ -40,11 +40,11 @@
 #define SIZE 3
 
 #define PRINTOUT \
-  for (int i = 0; i < SIZE; i++){\
+  for (int i = 0; i < data.size(); i++){\
     results = data[i];\
     cout << results.X << ", " << results.Y << ", " << results.Z << endl;\
   }\
-  cout << endl;
+  cout << endl
 
 
 using namespace std;
@@ -54,33 +54,103 @@ int main()
   CoordinateData3D data;
   XnVector3D results;
 
-  // Load in data points
+  // Load in data points tests
+  cout << "Adding three data points\n";
   data.addXnVector3D((XnVector3D) {0,1,2});
   data.addXnVector3D((XnVector3D) {3,4,5});
   data.addXnVector3D((XnVector3D) {6,7,8});
-  PRINTOUT
+  PRINTOUT;
+
+  cout << "Removing first element\n";
+  data.removeFromBegin();
+  PRINTOUT;
+
+  cout << "Remove last element\n";
+  data.removeFromEnd();
+  PRINTOUT;
+
+  cout << "Adding two data points\n";
+  data.addXnVector3D((XnVector3D) {9,10,11});
+  data.addXnVector3D((XnVector3D) {12,13,14});
+  PRINTOUT;
+
+  cout << "Removing second data point\n";
+  data.remove(1);
+  PRINTOUT;
+
+  cout << "Adding two data points\n";
+  data.addXnVector3D((XnVector3D) {15,16,17});
+  data.addXnVector3D((XnVector3D) {18,19,20});
+  PRINTOUT;
+
+  cout << "Removing second and third data point\n";
+  data.remove(1,2);
+  PRINTOUT;
+
+  cout << "Removing from outside data.size()\n";
+  data.remove(12);
+  PRINTOUT;
+
+  cout << "Clearing the results\n";
+  data.clear();
+  PRINTOUT;
+
+  cout << "Adding three data points\n";
+  data.addXnVector3D((XnVector3D) {0,1,2});
+  data.addXnVector3D((XnVector3D) {3,4,5});
+  data.addXnVector3D((XnVector3D) {6,7,8});
+  PRINTOUT;
 
 
+  // Translation and Rotation Tests
+  cout << "Translating by (1,1,1)\n";
   data.translate((XnVector3D) {1,1,1});
-  PRINTOUT
+  PRINTOUT;
 
+  cout << "Translating by (3,0,7)\n";
   data.translate((XnVector3D) {3,0,7});
-  PRINTOUT
+  PRINTOUT;
 
-  //data.resetTranslation();
-  //PRINTOUT
-
-
+  cout << "Rotate around Z-axis 45 degrees\n";
   data.rotate((XnMatrix3X3) {ZR, ZR, 0, -ZR, ZR, 0, 0, 0, 1});
-  PRINTOUT
+  PRINTOUT;
 
+  cout << "Rotate around Z-axis 45 degrees again\n";
   data.rotate((XnMatrix3X3) {ZR, ZR, 0, -ZR, ZR, 0, 0, 0, 1});
-  PRINTOUT
+  PRINTOUT;
 
 
+  // Converting to Coordinate System Tests
+  cout << "Convert Cartesian to Spherical\n";
+  data.convertToSpherical();
+  PRINTOUT;
+
+  cout << "Convert Spherical to Cylindrical\n";
+  data.convertToCylindrical();
+  PRINTOUT;
+
+  cout << "Convert Cylindrical to Cartesian\n";
+  data.convertToCartesian();
+  PRINTOUT;
+
+  cout << "Convert Cartesian to Cylindrical\n";
+  data.convertToCylindrical();
+  PRINTOUT;
+
+  cout << "Convert Cylindrical to Spherical\n";
+  data.convertToSpherical();
+  PRINTOUT;
+
+  cout << "Convert Spherical to Cartesian\n";
+  data.convertToCartesian();
+  PRINTOUT;
+
+
+  // Reset to original data
+  cout << "Resetting rotation and translations\n";
   data.resetRotation();
   data.resetTranslation();
-  PRINTOUT
+  PRINTOUT;
 
   return 0;
 }

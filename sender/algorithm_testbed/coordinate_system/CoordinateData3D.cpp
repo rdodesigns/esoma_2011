@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 84 [algorithms] (Fri Mar 25 04:46:37 EDT 2011)
- * @parent 0971f2c76d58c46dc05bd0d6d276a0d6fbdb194b
+ * @version 85 [algorithms] (Fri Mar 25 23:27:00 EDT 2011)
+ * @parent 4f1367c34178bc802352e74b0e76a15e405ec896
  *
  * @section DESCRIPTION
  *
@@ -12,15 +12,11 @@
  * This is licensed under GPLv3.
  *
  * This work was conceptualized and created by Ryan Orendorff, Jan 2011.
- * Resources and brainstorming assistance provided through a collaboration with
- * the MIT Media Lab and Tufts University. Contact information is provided
- * below.
  *
  * Contact
  *  email: esoma@rdodesigns.com
  *    www: http://www.rdodesigns.com
  * github: https://github.com/rdodesigns
- *
  */
 
 
