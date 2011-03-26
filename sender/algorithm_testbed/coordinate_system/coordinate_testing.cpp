@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 85 [algorithms] (Fri Mar 25 23:27:00 EDT 2011)
- * @parent 4f1367c34178bc802352e74b0e76a15e405ec896
+ * @version 86 [algorithms] (Fri Mar 25 23:46:08 EDT 2011)
+ * @parent 52ae570d2b80b4c37fb904713a87f19ae6b388f1
  *
  * @section DESCRIPTION
  *
@@ -112,11 +112,15 @@ int main()
   PRINTOUT;
 
   cout << "Rotate around Z-axis 45 degrees\n";
-  data.rotate((XnMatrix3X3) {ZR, ZR, 0, -ZR, ZR, 0, 0, 0, 1});
+  data.rotate((XnMatrix3X3) {ZR, ZR, 0,
+                            -ZR, ZR, 0,
+                              0,  0, 1});
   PRINTOUT;
 
-  cout << "Rotate around Z-axis 45 degrees again\n";
-  data.rotate((XnMatrix3X3) {ZR, ZR, 0, -ZR, ZR, 0, 0, 0, 1});
+  cout << "Rotate around Y-axis 60 degrees again\n";
+  data.rotate((XnMatrix3X3) {ZR, ZR, 0,
+                            -ZR, ZR, 0,
+                              0,  0, 1});
   PRINTOUT;
 
 
