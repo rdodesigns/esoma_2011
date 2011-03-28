@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 104 [build_system] (Mon Mar 28 03:32:22 EDT 2011)
- * @parent c0f3df27ccf168ef3344cf194d287b22ce2ab018
+ * @version 105 [complete_skel] (Mon Mar 28 18:30:26 EDT 2011)
+ * @parent ce6d1e9e39faea4077d384d3e2bd369c537e1330
  *
  * @section DESCRIPTION
  *
@@ -22,11 +22,10 @@
 
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
-//#include <vector.h>
+
+#include <Collector/DataCollector.h>
+
 #include <iostream>
-
-#include "DataCollector.h"
-
 
 struct limb_s {
   int num;

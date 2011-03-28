@@ -13,7 +13,7 @@ env = Environment()
 env.Append(CPPPATH = '/usr/include/ni:'+'#' + variantDir + os.sep + dirs[0])
 env.Append(LIBS = ['OpenNI', 'zmq'])
 env.Append(CCFLAGS = ['-arch', 'x86_64', '-O2', '-msse3'])
-env.Append(CPPDEFINES={'NDEBUG' : ''})
+env.Append(CPPDEFINES={'DEBUG' : '1'})
 
 for dir in dirs:
   o = SConscript(

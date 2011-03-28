@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 75 [master] (Mon Mar 21 05:47:43 EDT 2011)
- * @parent 132af61bc80c4968ff5a120e9c8746bb42381213
+ * @version 105 [complete_skel] (Mon Mar 28 18:30:26 EDT 2011)
+ * @parent ce6d1e9e39faea4077d384d3e2bd369c537e1330
  *
  * @section DESCRIPTION
  *
@@ -28,6 +28,9 @@
 #include <XnCppWrapper.h>
 #include <vector>
 
+#include <Collector/DataCollector.h>
+#include <Coordinate/CoordinateData3D.h>
+
 // Define the numbers for the body joints.
 #define LARM 3
 #define RARM 6
@@ -47,15 +50,14 @@ class Skeleton
     void updateSkeleton();
     XnVector3D getJoint(int joint_num);
 
-    XnVector3D joints[15];
-
     void addCollector(DataCollector *collector);
     void notify();
+    CoordinateData3D joints;
   protected:
 
   private:
     xn::UserGenerator user;
-    std::vector < class DataCollector * > collectors;
+    std::vector <DataCollector * > collectors;
 
 };
 

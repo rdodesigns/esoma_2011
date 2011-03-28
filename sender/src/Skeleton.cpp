@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 104 [build_system] (Mon Mar 28 03:32:22 EDT 2011)
- * @parent c0f3df27ccf168ef3344cf194d287b22ce2ab018
+ * @version 105 [complete_skel] (Mon Mar 28 18:30:26 EDT 2011)
+ * @parent ce6d1e9e39faea4077d384d3e2bd369c537e1330
  *
  * @section DESCRIPTION
  *
@@ -23,10 +23,11 @@
 //---------------------------------------------------------------------------
 // Includes
 //---------------------------------------------------------------------------
-#include "Skeleton.h"
-#include <Collector/ExtensionCollector.h>
-#include <iostream>
+#include <Skeleton.h>
 
+#ifdef DEBUG
+#include <iostream>
+#endif
 
 //---------------------------------------------------------------------------
 // Defines
@@ -59,7 +60,8 @@ XnMatrix3X3 Skeleton::GetBodyPartOrientation(XnUserID player, XnSkeletonJoint bo
 
 void Skeleton::updateSkeleton()
 {
-  int j = 0;
+  joints.clear();
+
   for (int i = 1; i <= 24 ; i++) {
     if (   i == 4
         || i == 5
@@ -70,11 +72,11 @@ void Skeleton::updateSkeleton()
         || i == 16
         || i == 19
         || i == 23) continue; // These give odd results in z axis.
-    XnVector3D pos = GetBodyPartPosition(1, (XnSkeletonJoint) i);
+    joints.addXnVector3D(GetBodyPartPosition(1, (XnSkeletonJoint) i));
 
-    joints[j++] = pos;
   }
 
+  //joints.translate(joints[2]); // Anchor person in middle of chest.
   notify(); // Notify all observing data collectors.
 
 }
