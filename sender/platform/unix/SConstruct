@@ -1,0 +1,28 @@
+# python
+#
+# SConstruct file for scons_test
+
+import os,sys,re
+
+variantDir = 'build'
+
+objs = []
+dirs = ['src']
+
+env = Environment()
+env.Append(CPPPATH = '/usr/include/ni:'+'#' + variantDir + os.sep + dirs[0])
+env.Append(LIBS = ['OpenNI', 'zmq'])
+env.Append(CCFLAGS = ['-arch', 'x86_64', '-O2', '-msse3'])
+env.Append(CPPDEFINES={'NDEBUG' : ''})
+
+for dir in dirs:
+  o = SConscript(
+      dir + os.sep + 'SConscript',
+      variant_dir = variantDir + os.sep + dir,
+      exports=['env']
+      )
+  objs.append(o)
+
+
+env.Program(variantDir + os.sep + 'esomas', objs)
+

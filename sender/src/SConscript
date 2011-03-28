@@ -1,0 +1,36 @@
+# python
+#
+# SConscript file for Example class
+
+import os, sys, re
+
+Import(['env'])
+objs = []
+
+dirs = ['Coordinate', 'Collector']
+
+headers = [ Split("""
+  Callback.h
+  Skeleton.h
+""") ]
+
+sources = [ Split("""
+  Callback.cpp
+  Skeleton.cpp
+  main.cpp
+""") ]
+
+for dir in dirs:
+  o = SConscript(
+      dir + os.sep + 'SConscript',
+      exports=['env']
+      )
+  objs.append(o)
+
+
+for source in sources:
+  objs.append(env.Object(source))
+
+
+Return('objs')
+
