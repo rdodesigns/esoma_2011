@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 87 [algorithms] (Fri Mar 25 23:49:25 EDT 2011)
- * @parent cdaa38519a5ff8511490acf367281c50ad8b49f3
+ * @version 103 [complete_skel] (Sun Mar 27 22:37:05 EDT 2011)
+ * @parent ac3becbea7546d5e90a262c32d944defccfbf21a
  *
  * @section DESCRIPTION
  *
@@ -30,10 +30,15 @@
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 
+#define RADIUS X
+#define PHI    Y
+#define THETA  Z
+
 #include <vector>
 using std::vector;
 
 #include <math.h>
+
 
 class CoordinateSystem3D
 {

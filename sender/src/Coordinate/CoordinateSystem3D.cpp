@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 102 [complete_skel] (Sat Mar 26 04:33:14 EDT 2011)
- * @parent 4cd1420ad9e65d046ded8d24406d2e23f98c5769
+ * @version 103 [complete_skel] (Sun Mar 27 22:37:05 EDT 2011)
+ * @parent ac3becbea7546d5e90a262c32d944defccfbf21a
  *
  * @section DESCRIPTION
  *
@@ -19,10 +19,6 @@
  * github: https://github.com/rdodesigns
  */
 #include "CoordinateSystem3D.h"
-
-#define RADIUS X
-#define PHI    Y
-#define THETA  Z
 
 typedef XnVector3D XnVector3DSph;
 typedef XnVector3D XnVector3DCyl;
