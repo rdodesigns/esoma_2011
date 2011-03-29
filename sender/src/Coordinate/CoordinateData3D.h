@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 87 [algorithms] (Fri Mar 25 23:49:25 EDT 2011)
- * @parent cdaa38519a5ff8511490acf367281c50ad8b49f3
+ * @version 106 [complete_skel] (Mon Mar 28 20:14:40 EDT 2011)
+ * @parent 5af5a331fa4bb1e7b44b87ff7dbf570e3835be5a
  *
  * @section DESCRIPTION
  *
@@ -50,6 +50,7 @@ class CoordinateData3D
     struct XnVector3D operator[](int index) {
       return data[index];
     }
+    struct XnVector3D at(int index){data.at(index);}
     void addXnVector3D(XnVector3D vector);
     void removeFromBegin(){remove(0);}
     void removeFromEnd(){data.pop_back();}

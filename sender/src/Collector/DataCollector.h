@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 105 [complete_skel] (Mon Mar 28 18:30:26 EDT 2011)
- * @parent ce6d1e9e39faea4077d384d3e2bd369c537e1330
+ * @version 106 [complete_skel] (Mon Mar 28 20:14:40 EDT 2011)
+ * @parent 5af5a331fa4bb1e7b44b87ff7dbf570e3835be5a
  *
  * @section DESCRIPTION
  *
@@ -25,6 +25,7 @@
 #include <math.h>
 
 #include <Skeleton.h>
+#include <Coordinate/CoordinateData3D.h>
 
 class Skeleton;
 
@@ -34,11 +35,12 @@ class DataCollector
     DataCollector(Skeleton *skel);
     ~DataCollector(){}
 
-    virtual void update() = 0;
+    virtual void update(CoordinateData3D& in_joints) = 0;
   protected:
-    Skeleton *skeleton;
     float getDistance(XnVector3D vec1, XnVector3D vec2);
+    CoordinateData3D data;
   private:
+    Skeleton *skeleton;
 };
 
 

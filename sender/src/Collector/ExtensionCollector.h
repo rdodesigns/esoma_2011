@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 105 [complete_skel] (Mon Mar 28 18:30:26 EDT 2011)
- * @parent ce6d1e9e39faea4077d384d3e2bd369c537e1330
+ * @version 106 [complete_skel] (Mon Mar 28 20:14:40 EDT 2011)
+ * @parent 5af5a331fa4bb1e7b44b87ff7dbf570e3835be5a
  *
  * @section DESCRIPTION
  *
@@ -39,9 +39,12 @@ class ExtensionCollector : protected DataCollector
     ~ExtensionCollector();
 
     float getExtension();
-    void update();
+    void update(CoordinateData3D& in_joints);
   private:
     struct limb_s limb;
+    static const int BASE     = 0;
+    static const int PROXIMAL = 1;
+    static const int DISTAL   = 2;
 };
 
 

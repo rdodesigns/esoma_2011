@@ -1,8 +1,8 @@
 /**
  * @file
  * @author Ryan Orendorff <ryan@rdodesigns.com>
- * @version 105 [complete_skel] (Mon Mar 28 18:30:26 EDT 2011)
- * @parent ce6d1e9e39faea4077d384d3e2bd369c537e1330
+ * @version 106 [complete_skel] (Mon Mar 28 20:14:40 EDT 2011)
+ * @parent 5af5a331fa4bb1e7b44b87ff7dbf570e3835be5a
  *
  * @section DESCRIPTION
  *
@@ -43,14 +43,19 @@ ExtensionCollector::~ExtensionCollector()
 
 float ExtensionCollector::getExtension()
 {
-  float proximal_length = getDistance(skeleton->joints[limb.num], skeleton->joints[limb.num+1]);
-  float distal_length = getDistance(skeleton->joints[limb.num+1], skeleton->joints[limb.num+2]);
-  float direct_length = getDistance(skeleton->joints[limb.num], skeleton->joints[limb.num+2]);
+  // The extensions are only based on the three limb points.
+  float proximal_length = getDistance(data[BASE], data[PROXIMAL]);
+  float distal_length = getDistance(data[PROXIMAL], data[DISTAL]);
+  float direct_length = getDistance(data[BASE], data[DISTAL]);
 
   return (direct_length / (proximal_length + distal_length) );
 }
 
-void ExtensionCollector::update()
+void ExtensionCollector::update(CoordinateData3D& in_joints)
 {
+  data.clear();
+
+  for (int i = limb.num; i < limb.num + 3; i++)
+    data.addXnVector3D(in_joints.at(i));
   float throw_away = getExtension();
 }
